@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Orbitron, JetBrains_Mono } from "next/font/google";
 import { AuthProvider } from "@/lib/auth/AuthContext";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 // --- FONT DEFINITIONS ---
@@ -133,6 +134,7 @@ export default function RootLayout({
              </div>
           </footer>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
