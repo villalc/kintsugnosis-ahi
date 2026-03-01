@@ -2,6 +2,18 @@
 
 import { useEffect, useRef } from 'react';
 
+// Tell TypeScript that <stripe-buy-button> is a valid HTML element
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'stripe-buy-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
+        'buy-button-id': string;
+        'publishable-key': string;
+      }, HTMLElement>;
+    }
+  }
+}
+
 interface StripeBuyButtonProps {
   buyButtonId: string;
   publishableKey: string;
@@ -16,21 +28,19 @@ export function StripeBuyButton({ buyButtonId, publishableKey }: StripeBuyButton
 
   useEffect(() => {
     // Load Stripe Buy Button script (idempotent)
-    if (!document.querySelector('script[src="https://js.stripe.com/v3/buy-button.js"]')) {
+    const scriptSrc = 'https://js.stripe.com/v3/buy-button.js';
+    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
       const script = document.createElement('script');
-      script.src = 'https://js.stripe.com/v3/buy-button.js';
+      script.src = scriptSrc;
       script.async = true;
       document.head.appendChild(script);
     }
+  }, []);
 
-    // Create the web component
-    if (containerRef.current && !containerRef.current.querySelector('stripe-buy-button')) {
-      const el = document.createElement('stripe-buy-button');
-      el.setAttribute('buy-button-id', buyButtonId);
-      el.setAttribute('publishable-key', publishableKey);
-      containerRef.current.appendChild(el);
-    }
-  }, [buyButtonId, publishableKey]);
-
-  return <div ref={containerRef} className="flex justify-center" />;
+  return (
+    <stripe-buy-button
+      buy-button-id={buyButtonId}
+      publishable-key={publishableKey}
+    />
+  );
 }

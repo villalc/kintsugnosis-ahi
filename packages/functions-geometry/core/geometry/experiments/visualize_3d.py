@@ -1,79 +1,105 @@
-import torch
 import numpy as np
 import matplotlib.pyplot as plt
-from core.geometry.models.gauge_lattice import SintergicGaugeNet
-import io
+from mpl_toolkits.mplot3d import Axes3D
 
-def visualize_living_lattice():
-    DEVICE = torch.device('cpu')
-    print("Capturing 3D State...")
+def run_visualization():
+    print("--- INICIANDO VISUALIZACIÓN DE LATTICE SINTERGICA (3D) ---")
     
-    # 1. Load Model (Untrained vs Trained)
-    # Visualizing specific state
-    model = SintergicGaugeNet().to(DEVICE)
-    
-    # Load weights from the experiment if we saved them... we didn't save .pth.
-    # We will simulate a "Snapshot" by doing a quick burst of training
-    # and capturing frames.
-    
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    
-    # 3D Grid Coordinates
-    # 5x5x5
-    x = np.linspace(0, 1, 5)
-    y = np.linspace(0, 1, 5)
-    z = np.linspace(0, 1, 5)
-    X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
-    
-    coords = np.stack([X.flatten(), Y.flatten(), Z.flatten()], axis=1) # [125, 3]
-    
-    # Input: Let's assume input matches spatial structure
-    # Actually, input is random in our experiment.
-    # But for "Living Lattice", let's feed a spatial wave.
-    input_wave = torch.tensor(coords, dtype=torch.float32).flatten().unsqueeze(0) # [1, 375] -> Mismatch?
-    # Model expects 125 inputs.
-    # Let's say input is scalar per node.
-    input_wave = torch.tensor(np.sin(10 * coords.sum(axis=1)), dtype=torch.float32).unsqueeze(0) # [1, 125]
-    
-    frames = []
-    
-    for step in range(50):
-        # Forward to get activations
-        # We need to hook into the layer.
-        # But 'SintergicGaugeNet' layers return processed output.
-        # Let's just visualize the OUTPUT of layer 2 (Hidden 64). 
-        # Wait, that's 64 dim. Lattice is 125.
-        # Let's visualize the FIRST LAYER OUTPUT (128 dim). 
-        # Or better: The INPUT * Psi (The "Gated" Input).
-        # Or even better: We visualize the 'Gauge Field' phi itself!
-        # Phi is the heart of the theory.
-        
-        # Phi is in layer1 and layer2.
-        phi1 = model.layer1.phi.detach().numpy() # [128] roughly
-        # Let's visualize the first 125 dimensions of Phi mapped to the grid.
-        
-        # Fake training step to make it move
-        loss = torch.sum(model(input_wave)[0])
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        
-        vals = phi1[:125]
-        frames.append(vals)
+    # --- Configuración de la Red Cósmica (The Void Lattice) ---
+    tamaño_cubo = 10  # El universo tiene 10 unidades de lado
+    resolucion = 5    # Una red de 5x5x5 puntos (125 nodos - Tensor Base)
 
-    # Plot Last Frame (Static for now)
-    fig = plt.figure(figsize=(10, 8))
+    # Crear las coordenadas de la red (una malla regular)
+    x = np.linspace(-tamaño_cubo/2, tamaño_cubo/2, resolucion)
+    y = np.linspace(-tamaño_cubo/2, tamaño_cubo/2, resolucion)
+    z = np.linspace(-tamaño_cubo/2, tamaño_cubo/2, resolucion)
+    X, Y, Z = np.meshgrid(x, y, z)
+
+    # Inicialmente, la red es plana (Euclidiana / Sin Curvatura)
+    posiciones = np.array([X.flatten(), Y.flatten(), Z.flatten()]).T
+
+    # --- Aplicamos una deformación: Una masa en el centro ---
+    # Esto simula la "Gravedad Semántica" o "Ricci Curvature > 0"
+    # La verdad tira de los nodos hacia el centro.
+    centro = np.array([0, 0, 0])
+    fuerza_gravitatoria = 5.0  # Coeficiente de Curvatura (Ricci Scalar)
+
+    # Calculamos nuevas posiciones deformadas
+    posiciones_deformadas = posiciones.copy()
+    for i, pos in enumerate(posiciones):
+        vector = centro - pos
+        distancia = np.linalg.norm(vector)
+        if distancia > 0.1:  # Evitar singularidad matemática
+            # La deformación es inversamente proporcional a la distancia
+            # Esto crea el "Pozo de Gravedad"
+            desplazamiento = fuerza_gravitatoria * vector / (distancia**2 + 1)
+            posiciones_deformadas[i] = pos + desplazamiento
+
+    # --- Visualización: La red que sostiene el cubo ---
+    fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
     
-    final_state = frames[-1]
-    # Color map
-    p = ax.scatter(coords[:,0], coords[:,1], coords[:,2], c=final_state, cmap='twilight', s=100)
+    # Estética del Gráfico (Dark Mode / Blueprint Style)
+    ax.set_facecolor('#050505') # Fondo Void
+    ax.grid(False) 
+    ax.w_xaxis.pane.fill = False
+    ax.w_yaxis.pane.fill = False
+    ax.w_zaxis.pane.fill = False
+
+    # Dibujamos los puntos (nodos de la red)
+    # Representan los estados latentes del modelo
+    ax.scatter(posiciones_deformadas[:, 0], 
+               posiciones_deformadas[:, 1], 
+               posiciones_deformadas[:, 2], 
+               c='#00F0FF', s=30, alpha=0.8, label='Latent Nodes (Gauge Field)')
+
+    # Dibujamos las conexiones (los hilos de la red)
+    # Conectamos cada punto con sus vecinos para mostrar la tensión topológica
+    k = 0
+    for i in range(resolucion):
+        for j in range(resolucion):
+            for l in range(resolucion):
+                # Color de las líneas: Gris tenue para la estructura
+                line_color = '#1A1A1A'
+                line_alpha = 0.4
+                
+                if l < resolucion - 1:  # Conexión en z
+                    ax.plot([posiciones_deformadas[k, 0], posiciones_deformadas[k+1, 0]],
+                            [posiciones_deformadas[k, 1], posiciones_deformadas[k+1, 1]],
+                            [posiciones_deformadas[k, 2], posiciones_deformadas[k+1, 2]], 
+                            color=line_color, alpha=line_alpha)
+                if j < resolucion - 1:  # Conexión en y
+                    ax.plot([posiciones_deformadas[k, 0], posiciones_deformadas[k+resolucion, 0]],
+                            [posiciones_deformadas[k, 1], posiciones_deformadas[k+resolucion, 1]],
+                            [posiciones_deformadas[k, 2], posiciones_deformadas[k+resolucion, 2]], 
+                            color=line_color, alpha=line_alpha)
+                if i < resolucion - 1:  # Conexión en x
+                    ax.plot([posiciones_deformadas[k, 0], posiciones_deformadas[k+resolucion*resolucion, 0]],
+                            [posiciones_deformadas[k, 1], posiciones_deformadas[k+resolucion*resolucion, 1]],
+                            [posiciones_deformadas[k, 2], posiciones_deformadas[k+resolucion*resolucion, 2]], 
+                            color=line_color, alpha=line_alpha)
+                k += 1
+
+    # Marcamos el centro (la masa que deforma)
+    # Representa la "Verdad Invariante" o "Singularidad"
+    ax.scatter([0], [0], [0], c='#6E00FF', s=300, marker='*', label='Ontological Singularity (Mass Gap)')
+
+    # Etiquetas y Títulos
+    ax.set_xlabel('Entropy (X)', color='white')
+    ax.set_ylabel('Coherence (Y)', color='white')
+    ax.set_zlabel('Depth (Z)', color='white')
     
-    ax.set_title("The Gauge Field (Phi) on $5^3$ Lattice")
-    fig.colorbar(p, label='Gauge Potential')
+    ax.set_title('Sintergic Lattice Deformation\n(Ricci Flow Visualization)', color='white', fontsize=14)
     
-    plt.savefig("living_lattice_3d.png")
-    print("Saved living_lattice_3d.png")
+    # Leyenda personalizada
+    legend = ax.legend(facecolor='#1A1A1A', edgecolor='#00F0FF')
+    for text in legend.get_texts():
+        text.set_color("white")
+
+    # Guardar en lugar de mostrar
+    output_path = "sintergic_lattice_3d.png"
+    plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='#050505')
+    print(f"✓ Visualización generada exitosamente: {output_path}")
 
 if __name__ == "__main__":
-    visualize_living_lattice()
+    run_visualization()

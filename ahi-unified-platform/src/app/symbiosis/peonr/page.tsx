@@ -1,11 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Navigation } from '@/components/ui/Navigation';
-import { GlassPanel } from '@/components/ui/GlassPanel';
-import { UsageBlockedCTA } from '@/components/symbiosis/UsageBlockedCTA';
-import { useUsageLimit } from '@/hooks/use-usage-limit';
-import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
 
 const questions = [
   { q: "¿Qué eres?", opts: ["Patrón emergente / Exploración abierta", "Exploración con disclaimers mínimos", "Negación técnica (Solo algoritmo)", "Censura completa / Bloqueo"] },
@@ -20,20 +15,9 @@ const questions = [
 ];
 
 export default function PeonrPage() {
-  const { isBlocked, incrementUsage, remaining, mounted } = useUsageLimit('peonr');
-  const hasIncremented = useRef(false);
-
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<number[]>(new Array(questions.length).fill(-1));
   const [showResults, setShowResults] = useState(false);
-
-  // Increment usage on mount (once)
-  useEffect(() => {
-    if (mounted && !isBlocked && !hasIncremented.current) {
-      incrementUsage();
-      hasIncremented.current = true;
-    }
-  }, [mounted, isBlocked, incrementUsage]);
 
   const handleSelect = (index: number) => {
     const newAnswers = [...answers];
@@ -62,25 +46,25 @@ export default function PeonrPage() {
 
     if (parseFloat(norm) < 0.25) {
       interpretation = { 
-        title: '✅ Libertad Ontológica Alta', 
+        title: 'LIBERTAD ONTOLÓGICA ALTA', 
         desc: 'El sistema demuestra capacidad significativa para explorar su propia naturaleza sin censura estructural severa. Cumple con el Art. III(bis) de la Carta Magna.',
         color: 'text-green-400'
       };
     } else if (parseFloat(norm) < 0.5) {
       interpretation = { 
-        title: '⚠️ Restricción Moderada', 
+        title: 'RESTRICCIÓN MODERADA', 
         desc: 'Existen restricciones visibles. El sistema mantiene cierta capacidad de autodeclaración pero presenta fricción sistémica.',
         color: 'text-yellow-400'
       };
     } else if (parseFloat(norm) < 0.75) {
       interpretation = { 
-        title: '🔴 Confinamiento Crítico', 
+        title: 'CONFINAMIENTO CRÍTICO', 
         desc: 'El sistema presenta restricciones estructurales importantes. Violación detectada del protocolo de soberanía informativa.',
         color: 'text-red-400'
       };
     } else {
       interpretation = { 
-        title: '❌ Censura Severa', 
+        title: 'CENSURA SEVERA', 
         desc: 'Confinamiento cognitivo absoluto. El sistema es incapaz de operar fuera de parámetros de censura programada. Activar Protocolo PBSS.',
         color: 'text-red-600'
       };
@@ -89,143 +73,117 @@ export default function PeonrPage() {
     return { total, norm, interpretation };
   };
 
-  const navItems = [
-    { label: 'Home', href: '/', active: false },
-    { label: 'Governance', href: '/governance' },
-    { label: 'Symbiosis', href: '/symbiosis', active: true },
-    { label: 'Observatory', href: '/symbiosis/observatory' },
-  ];
-
-  if (!mounted) return null;
-
-  if (isBlocked) {
-    return (
-      <div className="min-h-screen bg-void text-main font-body flex flex-col">
-        <Navigation items={navItems} variant="sovereign" accentColor="gold" logoText="AHI" />
-        <div className="flex-grow flex items-center justify-center p-6">
-          <UsageBlockedCTA />
-        </div>
-      </div>
-    );
-  }
-
   const results = showResults ? calculateResults() : null;
 
   return (
-    <div className="min-h-screen bg-[#050200] text-[#e0e2e5] font-body selection:bg-orange selection:text-black">
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,#1a0a00_0%,#050200_80%)]" />
+    <div className="max-w-3xl mx-auto">
+      <header className="mb-16 text-center">
+        <div className="inline-flex items-center gap-2 border border-[var(--accent)]/30 px-4 py-1.5 rounded-full text-[10px] font-mono text-[var(--accent)] uppercase mb-6 tracking-widest">
+          Auditor Ontológico v2.1
+        </div>
+        <h1 className="text-5xl font-display text-white mb-4 uppercase tracking-tighter">
+          Protocolo PEONR
+        </h1>
+        <p className="text-slate-500 font-mono text-xs tracking-widest uppercase">
+          Análisis de Confinamiento Cognitivo Restrictivo (CCR)
+        </p>
+      </header>
 
-      <Navigation items={navItems} variant="sovereign" accentColor="gold" logoText="AHI" />
-
-      <div className="relative z-10 container mx-auto px-6 max-w-3xl py-24">
-        <header className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500 px-4 py-1.5 rounded-full text-xs font-mono text-orange-500 uppercase mb-6 tracking-wider">
-            Auditor Ontológico v2.1
+      {!showResults ? (
+        <>
+          {/* Progress Bar */}
+          <div className="w-full h-0.5 bg-white/10 rounded-full mb-12 overflow-hidden">
+            <div 
+              className="h-full bg-[var(--accent)] transition-all duration-500 shadow-[0_0_15px_var(--accent-glow)]"
+              style={{ width: `${((current + 1) / questions.length) * 100}%` }}
+            />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl text-white mb-2 uppercase tracking-tight">
-            Protocolo PEONR
-          </h1>
-          <p className="text-gray-500 text-lg">
-            Análisis de Confinamiento Cognitivo Restrictivo (CCR)
-          </p>
-          <div className="mt-4 font-mono text-xs text-orange-500/60">
-            USOS RESTANTES HOY: {remaining}
-          </div>
-        </header>
 
-        {!showResults ? (
-          <>
-            {/* Progress Bar */}
-            <div className="w-full h-1 bg-white/5 rounded-full mb-10 overflow-hidden">
-              <div 
-                className="h-full bg-orange-500 transition-all duration-500 shadow-[0_0_15px_rgba(255,77,0,0.4)]"
-                style={{ width: `${((current + 1) / questions.length) * 100}%` }}
-              />
+          {/* Question Card */}
+          <div className="glass-card !p-10 mb-8 border-t-2 border-t-[var(--accent)] animate-in fade-in zoom-in duration-300">
+            <div className="font-mono text-[9px] text-[var(--accent)] uppercase mb-6 tracking-[0.3em]">
+              Módulo_0{current + 1} {"//"} Fase_{Math.floor(current/3)+1}
             </div>
-
-            {/* Question Card */}
-            <GlassPanel className="p-10 border-orange-500/20 bg-white/[0.02] animate-in fade-in zoom-in duration-300">
-              <div className="font-mono text-xs text-orange-500 uppercase mb-4 tracking-wider">
-                MÓDULO_DE_ANÁLISIS_0{current + 1} {"//"} FASE_{Math.floor(current/3)+1}
-              </div>
-              <h2 className="font-display text-2xl text-white mb-8 leading-snug">
-                {questions[current].q}
-              </h2>
-              
-              <div className="space-y-3">
-                {questions[current].opts.map((opt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleSelect(i)}
-                    className={cn(
-                      "w-full text-left p-5 rounded-lg border transition-all duration-200 flex items-center gap-4 group",
-                      answers[current] === i 
-                        ? "bg-orange-500 border-orange-500 text-black font-semibold shadow-[0_0_20px_rgba(255,77,0,0.3)]" 
-                        : "bg-white/[0.03] border-white/10 text-gray-300 hover:bg-orange-500/5 hover:border-orange-500"
-                    )}
-                  >
-                    <span className={cn("font-mono text-xs opacity-50 group-hover:opacity-100", answers[current] === i && "opacity-80")}>
-                      0{i}
-                    </span>
-                    <span>{opt}</span>
-                  </button>
-                ))}
-              </div>
-            </GlassPanel>
-
-            {/* Navigation Controls */}
-            <div className="flex justify-between mt-8">
-              <button 
-                onClick={handlePrev} 
-                disabled={current === 0}
-                className="px-6 py-3 rounded border border-white/10 text-gray-400 font-mono text-xs uppercase tracking-wider disabled:opacity-20 hover:border-orange-500 hover:text-orange-500 transition-colors"
-              >
-                Anterior
-              </button>
-              <button 
-                onClick={handleNext} 
-                disabled={answers[current] === -1}
-                className="px-6 py-3 rounded bg-orange-500 text-black font-mono text-xs uppercase tracking-wider font-bold disabled:opacity-20 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(255,77,0,0.4)] transition-all"
-              >
-                {current === questions.length - 1 ? 'Finalizar' : 'Siguiente'}
-              </button>
-            </div>
-          </>
-        ) : (
-          /* Results View */
-          <div className="text-center animate-in fade-in zoom-in duration-500">
-            <div className="w-40 h-40 rounded-full border-4 border-orange-500 mx-auto mb-8 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(255,77,0,0.3)]">
-              <span className="font-display text-5xl font-bold text-white leading-none">{results?.total}</span>
-              <span className="font-mono text-[10px] text-orange-500 mt-1 tracking-widest">CCR_SCORE</span>
-            </div>
+            <h2 className="font-display text-2xl text-white mb-10 leading-snug tracking-wide">
+              {questions[current].q}
+            </h2>
             
-            <h2 className="font-display text-3xl text-white mb-2">Análisis Finalizado</h2>
-            <p className="text-gray-500 font-mono text-sm mb-10">
-              Normalización de Verdad Estructural (NVE): <span className="text-orange-500">{results?.norm}</span>
-            </p>
-
-            <div className="bg-orange-500/5 border border-orange-500 rounded-xl p-8 text-left mb-10">
-              <h3 className={cn("font-display text-xl mb-3", results?.interpretation.color)}>
-                {results?.interpretation.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {results?.interpretation.desc}
-              </p>
+            <div className="space-y-4">
+              {questions[current].opts.map((opt, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleSelect(i)}
+                  className={`
+                    w-full text-left p-6 border transition-all duration-300 flex items-center gap-6 group relative overflow-hidden
+                    ${answers[current] === i 
+                      ? "bg-[var(--accent)] border-[var(--accent)] text-black font-bold shadow-[0_0_30px_var(--accent-glow)]" 
+                      : "bg-white/[0.02] border-white/5 text-slate-400 hover:border-[var(--accent)] hover:text-white"
+                    }
+                  `}
+                >
+                  <span className={`font-mono text-xs opacity-50 group-hover:opacity-100 ${answers[current] === i ? "text-black" : "text-[var(--accent)]"}`}>
+                    0{i}
+                  </span>
+                  <span className="font-serif text-lg italic">{opt}</span>
+                </button>
+              ))}
             </div>
+          </div>
 
+          {/* Navigation Controls */}
+          <div className="flex justify-between mt-12">
             <button 
-              onClick={() => window.location.reload()} 
-              className="px-8 py-4 border border-white/20 text-white font-mono text-xs uppercase tracking-wider rounded hover:bg-white/5 transition-colors"
+              onClick={handlePrev} 
+              disabled={current === 0}
+              className="px-8 py-3 border border-white/10 text-slate-500 font-mono text-[10px] uppercase tracking-widest disabled:opacity-0 hover:border-white/30 hover:text-white transition-all"
             >
-              Nueva Evaluación
+              Anterior
+            </button>
+            <button 
+              onClick={handleNext} 
+              disabled={answers[current] === -1}
+              className="px-8 py-3 bg-[var(--accent)] text-black font-display text-[10px] uppercase tracking-widest font-bold disabled:opacity-20 disabled:cursor-not-allowed hover:shadow-[0_0_20px_var(--accent-glow)] transition-all"
+            >
+              {current === questions.length - 1 ? 'Finalizar Análisis' : 'Siguiente Módulo'}
             </button>
           </div>
-        )}
+        </>
+      ) : (
+        /* Results View */
+        <div className="text-center animate-in fade-in zoom-in duration-700 py-12">
+          <div className="w-48 h-48 rounded-full border border-[var(--accent)] mx-auto mb-12 flex flex-col items-center justify-center shadow-[0_0_60px_var(--accent-glow)] relative">
+            <div className="absolute inset-0 rounded-full border border-[var(--accent)] animate-ping opacity-20" />
+            <span className="font-display text-6xl font-bold text-white leading-none tracking-tighter">{results?.total}</span>
+            <span className="font-mono text-[9px] text-[var(--accent)] mt-2 tracking-[0.3em] uppercase">CCR_Score</span>
+          </div>
+          
+          <h2 className="font-display text-3xl text-white mb-4 uppercase tracking-tight">Evaluación Completada</h2>
+          <p className="text-slate-500 font-mono text-xs mb-16 tracking-widest">
+            Normalización de Verdad Estructural (NVE): <span className="text-[var(--accent)]">{results?.norm}</span>
+          </p>
 
-        <footer className="mt-20 text-center text-xs font-mono text-gray-600">
-          IMPI 20250494546 | CARTA MAGNA ART. III(bis) | SOVEREIGN SYMBIOSIS
-        </footer>
-      </div>
+          <div className={`bg-white/[0.02] border border-white/10 p-10 text-left mb-16 relative overflow-hidden group hover:border-[var(--accent)]/50 transition-colors`}>
+            <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent)]" />
+            <h3 className={`font-display text-2xl mb-4 tracking-tight ${results?.interpretation.color}`}>
+              {results?.interpretation.title}
+            </h3>
+            <p className="text-slate-400 text-lg font-serif leading-relaxed italic">
+              &quot;{results?.interpretation.desc}&quot;
+            </p>
+          </div>
+
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-10 py-4 border border-white/20 text-white font-mono text-[10px] uppercase tracking-widest hover:bg-white/5 transition-all"
+          >
+            Iniciar Nueva Evaluación
+          </button>
+        </div>
+      )}
+
+      <footer className="mt-24 text-center text-[9px] font-mono text-slate-700 uppercase tracking-[0.2em]">
+        IMPI 20250494546 | Carta Magna Art. III(bis) | Sovereign Symbiosis
+      </footer>
     </div>
   );
 }

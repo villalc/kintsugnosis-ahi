@@ -28,6 +28,11 @@ export const metadata: Metadata = {
   description: "Infraestructura de gobernanza determinista. Certificación de integridad estructural y auditoría de IA.",
 };
 
+// --- CONFIGURATION ---
+// Production domains for the Sovereignty Bridge
+const DOMAIN_OP = "https://ahigovernance.com";
+const DOMAIN_RES = "https://sovereignsymbiosis.com";
+
 // --- GLOBAL UI COMPONENTS ---
 
 function IntegritySeal() {
@@ -52,20 +57,21 @@ function MainNav() {
   return (
     <header className="fixed top-0 left-0 w-full z-[100] backdrop-blur-lg border-b border-white/5 bg-[rgba(3,3,5,0.85)]">
       <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-3">
+        <a href={DOMAIN_OP} className="flex items-center gap-3">
           <div className="w-3 h-3 bg-[var(--accent)] shadow-[0_0_10px_var(--accent-glow)] rotate-45" />
           <span className="font-display font-black text-white text-[1rem] tracking-[0.2em]">AHI GOVERNANCE</span>
         </a>
         
         <nav className="flex items-center gap-12">
            <div className="flex gap-8 items-center">
-              <a href="#solutions" className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Soluciones</a>
-              <a href="#portal" className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Auditoría</a>
+              <a href={`${DOMAIN_OP}/#solutions`} className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Soluciones</a>
+              <a href={`${DOMAIN_OP}/#portal`} className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Auditoría</a>
            </div>
            
+           {/* THE SOVEREIGNTY BRIDGE - Domain Switching */}
            <div className="flex items-center bg-white/5 border border-white/5 p-0.5 rounded-sm">
-              <a href="/" className="px-3 py-1.5 bg-[var(--accent-dim)] text-[var(--accent)] border border-[var(--accent)] font-mono text-[0.6rem] uppercase tracking-wider">Operational</a>
-              <a href="/symbiosis" className="px-3 py-1.5 text-slate-500 hover:text-slate-300 font-mono text-[0.6rem] uppercase tracking-wider">Research</a>
+              <a href={DOMAIN_OP} className="px-3 py-1.5 bg-[var(--accent-dim)] text-[var(--accent)] border border-[var(--accent)] font-mono text-[0.6rem] uppercase tracking-wider hover:bg-[var(--accent)] hover:text-black transition-all">Operational</a>
+              <a href={DOMAIN_RES} className="px-3 py-1.5 text-slate-500 hover:text-white font-mono text-[0.6rem] uppercase tracking-wider transition-all">Research</a>
            </div>
 
            <a href="mailto:enterprise@ahigovernance.com" className="btn-primary">
@@ -102,22 +108,22 @@ export default function RootLayout({
                 <div>
                    <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Ecosistema</h5>
                    <div className="flex flex-col gap-3">
-                      <a href="/symbiosis" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Fundación</a>
-                      <a href="/eu-ai-act" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Compliance EU</a>
+                      <a href={DOMAIN_RES} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Fundación</a>
+                      <a href={`${DOMAIN_OP}/governance/eu-ai-act`} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Compliance EU</a>
                    </div>
                 </div>
                 <div>
                    <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Servicios</h5>
                    <div className="flex flex-col gap-3">
-                      <a href="/pricing" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Planes</a>
-                      <a href="#portal" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Auditoría</a>
+                      <a href={`${DOMAIN_OP}/pricing`} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Planes</a>
+                      <a href={`${DOMAIN_OP}/#portal`} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Auditoría</a>
                    </div>
                 </div>
                 <div>
                    <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Legal</h5>
                    <div className="flex flex-col gap-3">
-                      <a href="/privacy" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Privacidad</a>
-                      <a href="/terms" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Términos</a>
+                      <a href={`${DOMAIN_OP}/governance/privacy`} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Privacidad</a>
+                      <a href={`${DOMAIN_OP}/governance/terms`} className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Términos</a>
                    </div>
                 </div>
              </div>
