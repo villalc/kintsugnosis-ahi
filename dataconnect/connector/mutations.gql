@@ -1,0 +1,51 @@
+# Mutations for AHI Governance System
+
+# Registrar una nueva organización
+mutation CreateOrganization($name: String!, $email: String!, $website: String) @auth(level: USER) {
+  organization_insert(data: {
+    name: $name,
+    contactEmail: $email,
+    website: $website
+  })
+}
+
+# Registrar un nuevo modelo de IA para un cliente
+mutation RegisterAIModel($orgId: UUID!, $name: String!, $version: String!, $type: String) @auth(level: USER) {
+  aIModel_insert(data: {
+    organizationId: $orgId,
+    name: $name,
+    modelVersion: $version,
+    modelType: $type
+  })
+}
+
+# [CRITICAL] Registrar el resultado de una auditoría Alpha Core
+# Esto es lo que llamará tu función llm_validator
+mutation RecordAuditResult(
+  $modelId: UUID!, 
+  $status: String!,
+  $cri: Float,
+  $euScore: Float,
+  $hallucination: Float,
+  $ricci: Float,
+  $hash: String
+) @auth(level: USER) {
+  audit_insert(data: {
+    aiModelId: $modelId,
+    status: $status,
+    criScore: $cri,
+    euAiActComplianceScore: $euScore,
+    hallucinationRate: $hallucination,
+    ricciCurvature: $ricci,
+    integrityHash: $hash
+  })
+}
+
+# Emitir un certificado oficial
+mutation IssueCertificate($auditId: UUID!, $url: String!, $issuer: String!) @auth(level: USER) {
+  certificate_insert(data: {
+    auditId: $auditId,
+    certificateUrl: $url,
+    issuer: $issuer
+  })
+}

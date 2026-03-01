@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "ahi-unified-platform/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "workPath": "ahi-unified-platform"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "ahi-unified-platform/"
+    }
+  ]
+}

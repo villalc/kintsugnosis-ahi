@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  ==============================================
+  == SOVEREIGN SYMBIOSIS - SPECTRAL INTERFACE ==
+  ==============================================
+*/
+
+@layer base {
+  :root {
+    /* Identidad Cromática: Espectro de Energía */
+    --void-black: #050505;
+    --singularity-white: #F2F2F2;
+    --cherenkov-blue: #00F0FF;
+    --weyl-violet: #6E00FF;
+    --lattice-gray: #1A1A1A;
+    --decoherence-red: #FF2D00;
+  }
+  
+  body {
+    @apply bg-[var(--void-black)] text-[var(--singularity-white)];
+    font-feature-settings: "ss01", "ss02", "salt";
+  }
+}
+
+@layer components {
+  /* Contenedores de Texto: "Expedientes Clasificados" */
+  .glass-dossier {
+    @apply bg-white/[0.02] backdrop-blur-md border border-[#00F0FF]/20 shadow-[inset_0_0_20px_rgba(0,240,255,0.05)];
+  }
+
+  /* Botones: "Acción Gauge" */
+  .btn-core {
+    @apply border border-[#00F0FF] text-[#00F0FF] px-6 py-3 font-mono text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[#00F0FF]/10 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)];
+  }
+
+  /* Navegación: "Flujo Gauge" */
+  .nav-link-gauge {
+    @apply flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 relative group;
+  }
+  
+  .nav-link-gauge::before {
+    content: '';
+    @apply absolute -left-4 w-[2px] h-0 bg-[#00F0FF] transition-all duration-300;
+  }
+  
+  .nav-link-gauge:hover::before {
+    @apply h-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .font-grotesk {
+    font-family: var(--font-space-grotesk), sans-serif;
+  }
+  
+  .font-serif {
+    font-family: var(--font-stix-two-text), serif;
+  }
+  
+  .font-mono {
+    font-family: var(--font-jetbrains-mono), monospace;
+  }
+}
+
+/* Animaciones de Campo */
+@keyframes pulse-void {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-void 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

@@ -1,0 +1,29 @@
+# © 2025-2026 AHI 3.0 · AHI Governance Labs · IMPI: EXP-3495968
+name: "Ecosystem Manifest Validation"
+
+on:
+  push:
+    paths:
+      - 'ecosystem.json'
+  pull_request:
+    paths:
+      - 'ecosystem.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON syntax
+        run: python -c "import json; json.load(open('ecosystem.json'))"
+      - name: Validate ecosystem structure
+        run: |
+          python -c "
+          import json
+          with open('ecosystem.json') as f:
+              eco = json.load(f)
+          assert 'hub' in eco, 'Missing hub'
+          assert 'satellites' in eco, 'Missing satellites'
+          assert 'modules' in eco['hub'], 'Missing modules in hub'
+          print(f'✅ Ecosystem valid: {len(eco[\"hub\"][\"modules\"])} modules, {len(eco[\"satellites\"])} satellites')
+          "

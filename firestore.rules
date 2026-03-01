@@ -1,0 +1,56 @@
+rules_version = '2';
+
+// AHI Governance - Firestore Security Rules
+// Updated: 2026-02-25 (Phase 2 - AHI 3.0)
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- HELPER FUNCTIONS ---
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAuditor() {
+      // Se utiliza Custom Claim 'auditor' para verificar permisos de Jules.
+      return isAuthenticated() && request.auth.token.auditor == true;
+    }
+
+    // Rate limiting: Backend access only.
+    match /rate_limits/{key} {
+        allow read, write: if false;
+    }
+
+    // Genesis logs: Public read, backend write.
+    match /genesis_logs/{logId} {
+        allow read: if true;
+        allow write: if false;
+    }
+
+    // Integrity records: Secure 'get' via tracking ID, no listing.
+    match /integrityRecords/{recordId} {
+      allow get: if true;
+      allow list, write, update, delete: if false;
+    }
+
+    // --- BIOPSY REPORTS (Jules) ---
+    // Reglas para que el bot auditor (Python) suba reportes y el Dashboard (Node.js) los lea.
+    match /biopsies/{biopsyId} {
+      // Jules puede crear reportes.
+      allow create: if isAuditor() 
+                   && request.resource.data.keys().hasAll(['biopsy_id', 'status', 'metrics', 'timestamp'])
+                   && request.resource.data.biopsy_id == biopsyId;
+      
+      // El dashboard y el equipo pueden leer.
+      allow read: if isAuthenticated();
+
+      // Nadie puede borrar ni editar un reporte una vez "sellado" (write once).
+      allow update, delete: if false; 
+    }
+
+    // Default deny all.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

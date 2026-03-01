@@ -1,0 +1,6 @@
+connectorId: "ahi-core-connector"
+generate:
+  javascriptSdk:
+    outputDir: "../../ahi-unified-platform/src/lib/generated"
+    package: "@ahi/data-connect"
+    packageJsonDir: "../../ahi-unified-platform"

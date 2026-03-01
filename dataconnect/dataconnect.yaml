@@ -1,0 +1,12 @@
+specVersion: "v1alpha"
+serviceId: "ahi-governance-sql"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "ahi_governance_db"
+      cloudSql:
+        instanceId: "ahi-governance-pg"
+connector:
+  source: "./connector"

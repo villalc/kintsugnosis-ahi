@@ -1,0 +1,77 @@
+# .github/workflows/deploy.yml
+# Versión final optimizada para Monorepo y variables de entorno
+name: Deploy to Firebase
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ahi-unified-platform/**'
+      - 'packages/alpha-core/**'
+      - 'firebase.json'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to Firebase
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud (WIF)
+        id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: '${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ secrets.GCP_SERVICE_ACCOUNT }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Firebase Tools
+        run: npm install -g firebase-tools
+
+      - name: Enable Firebase Experiments
+        run: firebase experiments:enable webframeworks
+
+      - name: Install & Build Alpha Core (Dependencies)
+        working-directory: ./packages/alpha-core
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build & Deploy Web App
+        # Aquí inyectamos los secretos que creamos en GitHub
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+        run: |
+          # 1. Instalamos dependencias de la plataforma unificada
+          cd ahi-unified-platform
+          npm ci
+          
+          # 2. Construimos la aplicación de React/Next.js con las variables cargadas
+          npm run build
+          
+          # 3. Volvemos a la raíz y desplegamos
+          cd ..
+          firebase deploy --only hosting,functions --force --project ${{ secrets.GCP_PROJECT_ID }}

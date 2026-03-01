@@ -1,0 +1,56 @@
+extend type AIModel {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "AIModel", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `AIModel`.`organization`. It must match the value of `Organization`.`id`. See `@ref` for how to customize it.
+  """
+  organizationId: UUID! @fdc_generated(from: "AIModel.organization", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Audit {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Audit", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Audit`.`aiModel`. It must match the value of `AIModel`.`id`. See `@ref` for how to customize it.
+  """
+  aiModelId: UUID! @fdc_generated(from: "Audit.aiModel", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Audit`.`certificate`. It must match the value of `Certificate`.`id`. See `@ref` for how to customize it.
+  """
+  certificateId: UUID @fdc_generated(from: "Audit.certificate", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Certificate {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Certificate", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Certificate`.`audit`. It must match the value of `Audit`.`id`. See `@ref` for how to customize it.
+  """
+  auditId: UUID! @fdc_generated(from: "Certificate.audit", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Organization {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Organization", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type Publication {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Publication", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type User {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "User", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `User`.`organization`. It must match the value of `Organization`.`id`. See `@ref` for how to customize it.
+  """
+  organizationId: UUID @fdc_generated(from: "User.organization", purpose: IMPLICIT_REF_FIELD)
+}

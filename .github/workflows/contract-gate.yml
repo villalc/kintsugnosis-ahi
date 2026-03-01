@@ -1,0 +1,66 @@
+name: Contract Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/alpha-core/**'
+      - 'scripts/**'
+      - '.github/workflows/contract-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  contract-check:
+    name: Verify API Contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: packages/alpha-core/package-lock.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies (alpha-core)
+        run: |
+          cd packages/alpha-core
+          npm ci
+
+      - name: Build alpha-core
+        run: |
+          cd packages/alpha-core
+          npm run build
+
+      - name: Enable Firebase Experiments
+        run: cd packages/alpha-core && npx firebase experiments:enable webframeworks
+
+      - name: Run Unit Tests (Emulator)
+        # Runs npm test from repo root via prefix.
+        # The script inside package.json is updated to point to ../../firebase.json
+        run: npm --prefix packages/alpha-core test
+
+      - name: Generate Sample Payload
+        run: |
+          cd packages/alpha-core
+          node scripts/generate_sample.js > ../../sample_payload.json
+
+      - name: Run Contract Check
+        run: |
+          python scripts/contract_check.py sample_payload.json

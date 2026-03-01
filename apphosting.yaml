@@ -1,0 +1,19 @@
+serviceId: ahi-unified-platform
+runConfig:
+  cpu: 1
+  memoryMiB: 2048
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+env:
+  - variable: GOOGLE_GENAI_API_KEY
+    secret: GOOGLE_GENAI_API_KEY
+  - variable: NEXT_PUBLIC_STRIPE_PK
+    value: pk_live_51T5abG3fWVYxfUSDz66GX6GJvJERTjMOuM44eET8YWuMKoSjF9rmpVTm51DjlPzkw7YGXLhP2slmQcXi0nRfNkPv00CjHsUy0p
+  - variable: NEXT_PUBLIC_STRIPE_BTN_QUICK
+    value: buy_btn_1T5cmg3fWVYxfUSDuH0roD9A
+  - variable: NEXT_PUBLIC_STRIPE_BTN_TECHNICAL
+    value: buy_btn_1T5clo3fWVYxfUSDmxJcs9K3
+  - variable: NEXT_PUBLIC_STRIPE_BTN_ENTERPRISE
+    value: buy_btn_1T5chZ3fWVYxfUSDy7SjAWk9
+rootDirectory: ahi-unified-platform

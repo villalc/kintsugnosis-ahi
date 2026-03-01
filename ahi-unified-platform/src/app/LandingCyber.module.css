@@ -1,0 +1,514 @@
+/* LandingCyber.module.css
+ * Diseño Cyberpunk aislado via CSS Modules.
+ * Todas las variables y resets viven dentro de .pageWrapper
+ * para no contaminar ni ser contaminado por globals.css / Tailwind.
+ */
+
+/* ─── Wrapper raíz ─── */
+.pageWrapper {
+  --bg-void: #030305;
+  --bg-panel: rgba(10, 10, 15, 0.6);
+  --accent: #00f0ff;
+  --accent-glow: rgba(0, 240, 255, 0.4);
+  --accent-dim: rgba(0, 240, 255, 0.1);
+  --text-main: #e0e6ed;
+  --text-muted: #8892b0;
+  --border-glass: 1px solid rgba(0, 240, 255, 0.1);
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition-speed: 0.4s;
+
+  /* Reseteos locales */
+  background-color: var(--bg-void);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  /* Neutralizar cualquier margin/padding heredado */
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Modo Research (dorado) ─── */
+.pageWrapper.researchMode {
+  --accent: #d4af37;
+  --accent-glow: rgba(212, 175, 55, 0.4);
+  --accent-dim: rgba(212, 175, 55, 0.1);
+  --border-glass: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* ─── Fondo de grilla ─── */
+.gridBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--accent-dim) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent-dim) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 80%);
+  pointer-events: none;
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Header / Nav ─── */
+.header {
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: var(--border-glass);
+  background: rgba(3, 3, 5, 0.85);
+}
+
+.navInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoIcon {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: rotate(45deg);
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navLink {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: var(--accent);
+}
+
+.bridgeToggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--border-glass);
+  border-radius: 2px;
+  padding: 2px;
+  gap: 2px;
+  margin-left: 10px;
+}
+
+.bridgeBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.bridgeBtnActive {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* ─── Botones ─── */
+.btnPrimary {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 10px 24px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnPrimary:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 24px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnSecondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ─── Hero ─── */
+.hero {
+  padding: 160px 0 120px;
+  text-align: center;
+  position: relative;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  background: linear-gradient(180deg, #fff 20%, #556 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroText {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 48px;
+  line-height: 1.8;
+}
+
+.heroActions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 0.8rem;
+  border: 1px solid var(--accent);
+  padding: 4px 12px;
+  display: inline-block;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+/* ─── Secciones ─── */
+.services {
+  padding: 80px 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent);
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+/* ─── Grid / Cards ─── */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--bg-panel);
+  border: var(--border-glass);
+  padding: 48px 32px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.card:hover {
+  border-color: var(--accent-glow);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cardTitle {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.cardText {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.metricTag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 4px 10px;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+/* ─── Métricas en vivo ─── */
+.metricsSection {
+  padding: 80px 0;
+  border-top: var(--border-glass);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  text-align: center;
+}
+
+.metricCard {
+  padding: 32px 16px;
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ─── Integrity Seal (flotante) ─── */
+.integritySeal {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  background: rgba(3, 3, 5, 0.9);
+  border: 1px solid var(--accent);
+  padding: 12px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.sealIcon {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.sealRegion {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.sealValue {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* ─── Terminal UI ─── */
+.terminalSection {
+  padding: 100px 0;
+  border-top: var(--border-glass);
+}
+
+.terminalUi {
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #08080a;
+  overflow: hidden;
+}
+
+.termBar {
+  background: #111;
+  padding: 10px 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dotTerm {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.termBody {
+  padding: 80px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.termTitle {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+/* ─── Footer ─── */
+.footer {
+  padding: 60px 0 40px;
+  border-top: var(--border-glass);
+}
+
+.footerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footerText {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.footerLink {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.footerLink:hover {
+  color: var(--accent);
+}
+
+/* ─── Animación de entrada ─── */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.fadeIn:nth-child(2) { animation-delay: 0.15s; }
+.fadeIn:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse para el status dot */
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulseDot 2s ease infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px #00ff88; }
+  50% { opacity: 0.4; box-shadow: 0 0 2px #00ff88; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .container { padding: 0 20px; }
+  .hero { padding: 100px 0 80px; }
+  .nav { gap: 16px; }
+  .grid3 { grid-template-columns: 1fr; }
+  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+  .termBody { padding: 40px 20px; }
+  .integritySeal { bottom: 16px; right: 16px; }
+}
+
+@media (max-width: 600px) {
+  .nav { display: none; } /* Hamburger pendiente */
+  .heroTitle { letter-spacing: -1px; }
+  .heroActions { flex-direction: column; align-items: center; }
+  .metricsGrid { grid-template-columns: 1fr; }
+  .footerInner { flex-direction: column; text-align: center; }
+  .footerLinks { justify-content: center; }
+}

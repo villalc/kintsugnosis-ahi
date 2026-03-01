@@ -1,0 +1,68 @@
+# AHI Governance Data Schema
+# Postgres SQL Architecture for Radical Integrity
+
+type User @table {
+  authId: String!
+  email: String!
+  displayName: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+  organization: Organization
+  role: String
+  lastLogin: Timestamp
+}
+
+type Organization @table {
+  name: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+  contactEmail: String!
+  description: String
+  website: String
+  # Relaciones inversas para facilitar consultas
+  # users: [User!]!
+  # models: [AIModel!]!
+}
+
+type AIModel @table {
+  organization: Organization!
+  name: String!
+  modelVersion: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+  description: String
+  modelType: String # e.g., "LLM", "Diffusion", "Classification"
+  deploymentEnvironment: String # e.g., "Production", "Staging"
+  # audits: [Audit!]!
+}
+
+type Audit @table {
+  aiModel: AIModel!
+  auditDate: Timestamp! @default(expr: "request.time")
+  status: String! # e.g., "PENDING", "COMPLETED", "FAILED"
+  reportUrl: String
+  # Métricas Core del Ecosistema
+  criScore: Float
+  euAiActComplianceScore: Float
+  hallucinationRate: Float
+  ricciCurvature: Float # Agregado para Alpha Core
+  integrityHash: String # Hash inmutable de la auditoría
+  certificate: Certificate
+}
+
+type Certificate @table {
+  audit: Audit!
+  issueDate: Timestamp! @default(expr: "request.time")
+  certificateUrl: String!
+  expirationDate: Timestamp
+  issuer: String # e.g., "AHI Governance Labs Alpha Node"
+  blockchainTxId: String # Futuro: Anclaje a blockchain
+}
+
+type Publication @table {
+  title: String!
+  publicationType: String! # e.g., "Paper", "Manifesto", "Article"
+  publishDate: Timestamp!
+  contentUrl: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+  abstract: String
+  authors: [String]
+  keywords: [String]
+}

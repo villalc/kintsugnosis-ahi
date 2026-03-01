@@ -1,0 +1,320 @@
+extend type Query {
+  """
+  ✨ Look up a single `AIModel` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  aIModel(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: AIModel_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: AIModel_FirstRow
+  ): AIModel @fdc_generated(from: "AIModel", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Audit` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  audit(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Audit_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Audit_FirstRow
+  ): Audit @fdc_generated(from: "Audit", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Certificate` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  certificate(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Certificate_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Certificate_FirstRow
+  ): Certificate @fdc_generated(from: "Certificate", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Organization` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  organization(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Organization_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Organization_FirstRow
+  ): Organization @fdc_generated(from: "Organization", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Publication` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  publication(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Publication_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Publication_FirstRow
+  ): Publication @fdc_generated(from: "Publication", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `User` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  user(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ List `AIModel` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  aIModels(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: AIModel_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [AIModel_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: AIModel_Having
+  ): [AIModel!]! @fdc_generated(from: "AIModel", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Audit` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  audits(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Audit_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Audit_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Audit_Having
+  ): [Audit!]! @fdc_generated(from: "Audit", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Certificate` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  certificates(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Certificate_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Certificate_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Certificate_Having
+  ): [Certificate!]! @fdc_generated(from: "Certificate", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Organization` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  organizations(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Organization_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Organization_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Organization_Having
+  ): [Organization!]! @fdc_generated(from: "Organization", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Publication` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  publications(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Publication_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Publication_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Publication_Having
+  ): [Publication!]! @fdc_generated(from: "Publication", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `User` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  users(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: User_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [User_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: User_Having
+  ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+}

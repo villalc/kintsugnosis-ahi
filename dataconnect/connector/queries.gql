@@ -1,0 +1,44 @@
+# Queries for AHI Governance System
+
+# Obtener historial de auditorías de un modelo
+query GetModelAudits($modelId: UUID!) @auth(level: PUBLIC) {
+  audits(where: { aiModelId: { eq: $modelId } }, orderBy: { auditDate: DESC }) {
+    auditDate
+    status
+    criScore
+    integrityHash
+    certificate {
+      certificateUrl
+      issueDate
+    }
+  }
+}
+
+# Verificador Público de Certificados (para el QR/Link de validación)
+query VerifyCertificate($auditId: UUID!) @auth(level: PUBLIC) {
+  certificate(key: {auditId: $auditId}) {
+    issuer
+    issueDate
+    audit {
+      integrityHash
+      criScore
+      aiModel {
+        name
+        organization {
+          name
+        }
+      }
+    }
+  }
+}
+
+# Listar papers de Sovereign Symbiosis
+query ListPublications @auth(level: PUBLIC) {
+  publications(orderBy: { publishDate: DESC }) {
+    title
+    publicationType
+    abstract
+    contentUrl
+    authors
+  }
+}

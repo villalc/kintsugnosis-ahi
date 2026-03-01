@@ -1,0 +1,2198 @@
+"""
+✨ `AIModel_KeyOutput` returns the primary key fields of table type `AIModel`.
+
+It has the same format as `AIModel_Key`, but is only used as mutation return value.
+"""
+scalar AIModel_KeyOutput
+"""
+✨ `Audit_KeyOutput` returns the primary key fields of table type `Audit`.
+
+It has the same format as `Audit_Key`, but is only used as mutation return value.
+"""
+scalar Audit_KeyOutput
+"""
+✨ `Certificate_KeyOutput` returns the primary key fields of table type `Certificate`.
+
+It has the same format as `Certificate_Key`, but is only used as mutation return value.
+"""
+scalar Certificate_KeyOutput
+"""
+✨ `Organization_KeyOutput` returns the primary key fields of table type `Organization`.
+
+It has the same format as `Organization_Key`, but is only used as mutation return value.
+"""
+scalar Organization_KeyOutput
+"""
+✨ `Publication_KeyOutput` returns the primary key fields of table type `Publication`.
+
+It has the same format as `Publication_Key`, but is only used as mutation return value.
+"""
+scalar Publication_KeyOutput
+"""
+✨ `User_KeyOutput` returns the primary key fields of table type `User`.
+
+It has the same format as `User_Key`, but is only used as mutation return value.
+"""
+scalar User_KeyOutput
+"""
+✨ Generated data input type for table 'AIModel'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input AIModel_Data {
+  """
+  ✨ Generated from Field `AIModel`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `AIModel`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `AIModel`.`organizationId` of type `UUID!`
+  """
+  organizationId: UUID
+  """
+  ✨ `_expr` server value variant of `organizationId` (✨ Generated from Field `AIModel`.`organizationId` of type `UUID!`)
+  """
+  organizationId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `AIModel`.`organization` of type `Organization!`
+  """
+  organization: Organization_Key
+  """
+  ✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `AIModel`.`deploymentEnvironment` of type `String`
+  """
+  deploymentEnvironment: String
+  """
+  ✨ `_expr` server value variant of `deploymentEnvironment` (✨ Generated from Field `AIModel`.`deploymentEnvironment` of type `String`)
+  """
+  deploymentEnvironment_expr: String_Expr
+  """
+  ✨ Generated from Field `AIModel`.`description` of type `String`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `AIModel`.`description` of type `String`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `AIModel`.`modelType` of type `String`
+  """
+  modelType: String
+  """
+  ✨ `_expr` server value variant of `modelType` (✨ Generated from Field `AIModel`.`modelType` of type `String`)
+  """
+  modelType_expr: String_Expr
+  """
+  ✨ Generated from Field `AIModel`.`modelVersion` of type `String!`
+  """
+  modelVersion: String
+  """
+  ✨ `_expr` server value variant of `modelVersion` (✨ Generated from Field `AIModel`.`modelVersion` of type `String!`)
+  """
+  modelVersion_expr: String_Expr
+  """
+  ✨ Generated from Field `AIModel`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `AIModel`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'AIModel'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input AIModel_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [AIModel_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: AIModel_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [AIModel_Filter!]
+  """
+  ✨ Generated from Field `AIModel`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `AIModel`.`organizationId` of type `UUID!`
+  """
+  organizationId: UUID_Filter
+  """
+  ✨ Generated from Field `AIModel`.`organization` of type `Organization!`
+  """
+  organization: Organization_Filter
+  """
+  ✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `AIModel`.`deploymentEnvironment` of type `String`
+  """
+  deploymentEnvironment: String_Filter
+  """
+  ✨ Generated from Field `AIModel`.`description` of type `String`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `AIModel`.`modelType` of type `String`
+  """
+  modelType: String_Filter
+  """
+  ✨ Generated from Field `AIModel`.`modelVersion` of type `String!`
+  """
+  modelVersion: String_Filter
+  """
+  ✨ Generated from Field `AIModel`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `AIModel`.`audits_on_aiModel` of type `[Audit!]!`
+  """
+  audits_on_aiModel: Audit_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'AIModel'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input AIModel_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [AIModel_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: AIModel_Filter
+}
+"""
+✨ Generated having input type for table 'AIModel'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input AIModel_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [AIModel_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: AIModel_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [AIModel_Having!]
+  """
+  ✨ Generated from Field `AIModel`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`deploymentEnvironment_count` of type `Int!`
+  """
+  deploymentEnvironment_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`modelType_count` of type `Int!`
+  """
+  modelType_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`modelVersion_count` of type `Int!`
+  """
+  modelVersion_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`organizationId_count` of type `Int!`
+  """
+  organizationId_count: Int_Filter
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'AIModel'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input AIModel_Key {
+  """
+  ✨ Generated from Field `AIModel`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `AIModel`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'AIModel'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input AIModel_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: AIModel_Filter
+}
+"""
+✨ Generated order input type for table 'AIModel'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input AIModel_Order {
+  """
+  ✨ Generated from Field `AIModel`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`organizationId` of type `UUID!`
+  """
+  organizationId: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`organization` of type `Organization!`
+  """
+  organization: Organization_Order
+  """
+  ✨ Generated from Field `AIModel`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`deploymentEnvironment` of type `String`
+  """
+  deploymentEnvironment: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`description` of type `String`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`modelType` of type `String`
+  """
+  modelType: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`modelVersion` of type `String!`
+  """
+  modelVersion: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`deploymentEnvironment_count` of type `Int!`
+  """
+  deploymentEnvironment_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`modelType_count` of type `Int!`
+  """
+  modelType_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`modelVersion_count` of type `Int!`
+  """
+  modelVersion_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`organizationId_count` of type `Int!`
+  """
+  organizationId_count: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `AIModel`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Audit'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Audit_Data {
+  """
+  ✨ Generated from Field `Audit`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Audit`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Audit`.`aiModelId` of type `UUID!`
+  """
+  aiModelId: UUID
+  """
+  ✨ `_expr` server value variant of `aiModelId` (✨ Generated from Field `Audit`.`aiModelId` of type `UUID!`)
+  """
+  aiModelId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Audit`.`certificateId` of type `UUID`
+  """
+  certificateId: UUID
+  """
+  ✨ `_expr` server value variant of `certificateId` (✨ Generated from Field `Audit`.`certificateId` of type `UUID`)
+  """
+  certificateId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Audit`.`aiModel` of type `AIModel!`
+  """
+  aiModel: AIModel_Key
+  """
+  ✨ Generated from Field `Audit`.`certificate` of type `Certificate`
+  """
+  certificate: Certificate_Key
+  """
+  ✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`
+  """
+  auditDate: Timestamp
+  """
+  ✨ `_expr` server value variant of `auditDate` (✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`)
+  """
+  auditDate_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `auditDate` (✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`)
+  """
+  auditDate_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `auditDate` (✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`)
+  """
+  auditDate_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Audit`.`criScore` of type `Float`
+  """
+  criScore: Float
+  """
+  ✨ `_expr` server value variant of `criScore` (✨ Generated from Field `Audit`.`criScore` of type `Float`)
+  """
+  criScore_expr: Float_Expr
+  """
+  ✨ `_update` server value variant of `criScore` (✨ Generated from Field `Audit`.`criScore` of type `Float`)
+  """
+  criScore_update: [Float_Update!]
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore` of type `Float`
+  """
+  euAiActComplianceScore: Float
+  """
+  ✨ `_expr` server value variant of `euAiActComplianceScore` (✨ Generated from Field `Audit`.`euAiActComplianceScore` of type `Float`)
+  """
+  euAiActComplianceScore_expr: Float_Expr
+  """
+  ✨ `_update` server value variant of `euAiActComplianceScore` (✨ Generated from Field `Audit`.`euAiActComplianceScore` of type `Float`)
+  """
+  euAiActComplianceScore_update: [Float_Update!]
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate` of type `Float`
+  """
+  hallucinationRate: Float
+  """
+  ✨ `_expr` server value variant of `hallucinationRate` (✨ Generated from Field `Audit`.`hallucinationRate` of type `Float`)
+  """
+  hallucinationRate_expr: Float_Expr
+  """
+  ✨ `_update` server value variant of `hallucinationRate` (✨ Generated from Field `Audit`.`hallucinationRate` of type `Float`)
+  """
+  hallucinationRate_update: [Float_Update!]
+  """
+  ✨ Generated from Field `Audit`.`integrityHash` of type `String`
+  """
+  integrityHash: String
+  """
+  ✨ `_expr` server value variant of `integrityHash` (✨ Generated from Field `Audit`.`integrityHash` of type `String`)
+  """
+  integrityHash_expr: String_Expr
+  """
+  ✨ Generated from Field `Audit`.`reportUrl` of type `String`
+  """
+  reportUrl: String
+  """
+  ✨ `_expr` server value variant of `reportUrl` (✨ Generated from Field `Audit`.`reportUrl` of type `String`)
+  """
+  reportUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature` of type `Float`
+  """
+  ricciCurvature: Float
+  """
+  ✨ `_expr` server value variant of `ricciCurvature` (✨ Generated from Field `Audit`.`ricciCurvature` of type `Float`)
+  """
+  ricciCurvature_expr: Float_Expr
+  """
+  ✨ `_update` server value variant of `ricciCurvature` (✨ Generated from Field `Audit`.`ricciCurvature` of type `Float`)
+  """
+  ricciCurvature_update: [Float_Update!]
+  """
+  ✨ Generated from Field `Audit`.`status` of type `String!`
+  """
+  status: String
+  """
+  ✨ `_expr` server value variant of `status` (✨ Generated from Field `Audit`.`status` of type `String!`)
+  """
+  status_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Audit'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Audit_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Audit_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Audit_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Audit_Filter!]
+  """
+  ✨ Generated from Field `Audit`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Audit`.`aiModelId` of type `UUID!`
+  """
+  aiModelId: UUID_Filter
+  """
+  ✨ Generated from Field `Audit`.`certificateId` of type `UUID`
+  """
+  certificateId: UUID_Filter
+  """
+  ✨ Generated from Field `Audit`.`aiModel` of type `AIModel!`
+  """
+  aiModel: AIModel_Filter
+  """
+  ✨ Generated from Field `Audit`.`certificate` of type `Certificate`
+  """
+  certificate: Certificate_Filter
+  """
+  ✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`
+  """
+  auditDate: Timestamp_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore` of type `Float`
+  """
+  criScore: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore` of type `Float`
+  """
+  euAiActComplianceScore: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate` of type `Float`
+  """
+  hallucinationRate: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`integrityHash` of type `String`
+  """
+  integrityHash: String_Filter
+  """
+  ✨ Generated from Field `Audit`.`reportUrl` of type `String`
+  """
+  reportUrl: String_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature` of type `Float`
+  """
+  ricciCurvature: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`status` of type `String!`
+  """
+  status: String_Filter
+  """
+  ✨ Generated from Field `Audit`.`certificates_on_audit` of type `[Certificate!]!`
+  """
+  certificates_on_audit: Certificate_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Audit'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Audit_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Audit_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Audit_Filter
+}
+"""
+✨ Generated having input type for table 'Audit'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Audit_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Audit_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Audit_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Audit_Having!]
+  """
+  ✨ Generated from Field `Audit`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`aiModelId_count` of type `Int!`
+  """
+  aiModelId_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`auditDate_count` of type `Int!`
+  """
+  auditDate_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`certificateId_count` of type `Int!`
+  """
+  certificateId_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore_count` of type `Int!`
+  """
+  criScore_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_count` of type `Int!`
+  """
+  euAiActComplianceScore_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_count` of type `Int!`
+  """
+  hallucinationRate_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`integrityHash_count` of type `Int!`
+  """
+  integrityHash_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`reportUrl_count` of type `Int!`
+  """
+  reportUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_count` of type `Int!`
+  """
+  ricciCurvature_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`status_count` of type `Int!`
+  """
+  status_count: Int_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore_sum` of type `Float`
+  """
+  criScore_sum: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_sum` of type `Float`
+  """
+  euAiActComplianceScore_sum: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_sum` of type `Float`
+  """
+  hallucinationRate_sum: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_sum` of type `Float`
+  """
+  ricciCurvature_sum: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore_avg` of type `Float`
+  """
+  criScore_avg: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_avg` of type `Float`
+  """
+  euAiActComplianceScore_avg: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_avg` of type `Float`
+  """
+  hallucinationRate_avg: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_avg` of type `Float`
+  """
+  ricciCurvature_avg: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`auditDate_min` of type `Timestamp`
+  """
+  auditDate_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore_min` of type `Float`
+  """
+  criScore_min: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_min` of type `Float`
+  """
+  euAiActComplianceScore_min: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_min` of type `Float`
+  """
+  hallucinationRate_min: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_min` of type `Float`
+  """
+  ricciCurvature_min: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`auditDate_max` of type `Timestamp`
+  """
+  auditDate_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Audit`.`criScore_max` of type `Float`
+  """
+  criScore_max: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_max` of type `Float`
+  """
+  euAiActComplianceScore_max: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_max` of type `Float`
+  """
+  hallucinationRate_max: Float_Filter
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_max` of type `Float`
+  """
+  ricciCurvature_max: Float_Filter
+}
+"""
+✨ Generated key input type for table 'Audit'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Audit_Key {
+  """
+  ✨ Generated from Field `Audit`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Audit`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Audit'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Audit_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Audit_Filter
+}
+"""
+✨ Generated order input type for table 'Audit'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Audit_Order {
+  """
+  ✨ Generated from Field `Audit`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`aiModelId` of type `UUID!`
+  """
+  aiModelId: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`certificateId` of type `UUID`
+  """
+  certificateId: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`aiModel` of type `AIModel!`
+  """
+  aiModel: AIModel_Order
+  """
+  ✨ Generated from Field `Audit`.`certificate` of type `Certificate`
+  """
+  certificate: Certificate_Order
+  """
+  ✨ Generated from Field `Audit`.`auditDate` of type `Timestamp!`
+  """
+  auditDate: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore` of type `Float`
+  """
+  criScore: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore` of type `Float`
+  """
+  euAiActComplianceScore: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate` of type `Float`
+  """
+  hallucinationRate: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`integrityHash` of type `String`
+  """
+  integrityHash: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`reportUrl` of type `String`
+  """
+  reportUrl: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature` of type `Float`
+  """
+  ricciCurvature: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`status` of type `String!`
+  """
+  status: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`aiModelId_count` of type `Int!`
+  """
+  aiModelId_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`auditDate_count` of type `Int!`
+  """
+  auditDate_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`certificateId_count` of type `Int!`
+  """
+  certificateId_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore_count` of type `Int!`
+  """
+  criScore_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_count` of type `Int!`
+  """
+  euAiActComplianceScore_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_count` of type `Int!`
+  """
+  hallucinationRate_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`integrityHash_count` of type `Int!`
+  """
+  integrityHash_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`reportUrl_count` of type `Int!`
+  """
+  reportUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_count` of type `Int!`
+  """
+  ricciCurvature_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`status_count` of type `Int!`
+  """
+  status_count: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore_sum` of type `Float`
+  """
+  criScore_sum: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_sum` of type `Float`
+  """
+  euAiActComplianceScore_sum: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_sum` of type `Float`
+  """
+  hallucinationRate_sum: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_sum` of type `Float`
+  """
+  ricciCurvature_sum: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore_avg` of type `Float`
+  """
+  criScore_avg: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_avg` of type `Float`
+  """
+  euAiActComplianceScore_avg: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_avg` of type `Float`
+  """
+  hallucinationRate_avg: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_avg` of type `Float`
+  """
+  ricciCurvature_avg: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`auditDate_min` of type `Timestamp`
+  """
+  auditDate_min: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore_min` of type `Float`
+  """
+  criScore_min: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_min` of type `Float`
+  """
+  euAiActComplianceScore_min: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_min` of type `Float`
+  """
+  hallucinationRate_min: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_min` of type `Float`
+  """
+  ricciCurvature_min: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`auditDate_max` of type `Timestamp`
+  """
+  auditDate_max: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`criScore_max` of type `Float`
+  """
+  criScore_max: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`euAiActComplianceScore_max` of type `Float`
+  """
+  euAiActComplianceScore_max: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`hallucinationRate_max` of type `Float`
+  """
+  hallucinationRate_max: OrderDirection
+  """
+  ✨ Generated from Field `Audit`.`ricciCurvature_max` of type `Float`
+  """
+  ricciCurvature_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Certificate'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Certificate_Data {
+  """
+  ✨ Generated from Field `Certificate`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Certificate`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Certificate`.`auditId` of type `UUID!`
+  """
+  auditId: UUID
+  """
+  ✨ `_expr` server value variant of `auditId` (✨ Generated from Field `Certificate`.`auditId` of type `UUID!`)
+  """
+  auditId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Certificate`.`audit` of type `Audit!`
+  """
+  audit: Audit_Key
+  """
+  ✨ Generated from Field `Certificate`.`blockchainTxId` of type `String`
+  """
+  blockchainTxId: String
+  """
+  ✨ `_expr` server value variant of `blockchainTxId` (✨ Generated from Field `Certificate`.`blockchainTxId` of type `String`)
+  """
+  blockchainTxId_expr: String_Expr
+  """
+  ✨ Generated from Field `Certificate`.`certificateUrl` of type `String!`
+  """
+  certificateUrl: String
+  """
+  ✨ `_expr` server value variant of `certificateUrl` (✨ Generated from Field `Certificate`.`certificateUrl` of type `String!`)
+  """
+  certificateUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`
+  """
+  expirationDate: Timestamp
+  """
+  ✨ `_expr` server value variant of `expirationDate` (✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`)
+  """
+  expirationDate_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `expirationDate` (✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`)
+  """
+  expirationDate_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `expirationDate` (✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`)
+  """
+  expirationDate_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`
+  """
+  issueDate: Timestamp
+  """
+  ✨ `_expr` server value variant of `issueDate` (✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`)
+  """
+  issueDate_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `issueDate` (✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`)
+  """
+  issueDate_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `issueDate` (✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`)
+  """
+  issueDate_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Certificate`.`issuer` of type `String`
+  """
+  issuer: String
+  """
+  ✨ `_expr` server value variant of `issuer` (✨ Generated from Field `Certificate`.`issuer` of type `String`)
+  """
+  issuer_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Certificate'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Certificate_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Certificate_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Certificate_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Certificate_Filter!]
+  """
+  ✨ Generated from Field `Certificate`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Certificate`.`auditId` of type `UUID!`
+  """
+  auditId: UUID_Filter
+  """
+  ✨ Generated from Field `Certificate`.`audit` of type `Audit!`
+  """
+  audit: Audit_Filter
+  """
+  ✨ Generated from Field `Certificate`.`blockchainTxId` of type `String`
+  """
+  blockchainTxId: String_Filter
+  """
+  ✨ Generated from Field `Certificate`.`certificateUrl` of type `String!`
+  """
+  certificateUrl: String_Filter
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`
+  """
+  expirationDate: Timestamp_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`
+  """
+  issueDate: Timestamp_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issuer` of type `String`
+  """
+  issuer: String_Filter
+  """
+  ✨ Generated from Field `Certificate`.`audits_on_certificate` of type `[Audit!]!`
+  """
+  audits_on_certificate: Audit_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Certificate'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Certificate_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Certificate_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Certificate_Filter
+}
+"""
+✨ Generated having input type for table 'Certificate'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Certificate_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Certificate_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Certificate_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Certificate_Having!]
+  """
+  ✨ Generated from Field `Certificate`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`auditId_count` of type `Int!`
+  """
+  auditId_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`blockchainTxId_count` of type `Int!`
+  """
+  blockchainTxId_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`certificateUrl_count` of type `Int!`
+  """
+  certificateUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_count` of type `Int!`
+  """
+  expirationDate_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_count` of type `Int!`
+  """
+  issueDate_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issuer_count` of type `Int!`
+  """
+  issuer_count: Int_Filter
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_min` of type `Timestamp`
+  """
+  expirationDate_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_min` of type `Timestamp`
+  """
+  issueDate_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_max` of type `Timestamp`
+  """
+  expirationDate_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_max` of type `Timestamp`
+  """
+  issueDate_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Certificate'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Certificate_Key {
+  """
+  ✨ Generated from Field `Certificate`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Certificate`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Certificate'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Certificate_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Certificate_Filter
+}
+"""
+✨ Generated order input type for table 'Certificate'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Certificate_Order {
+  """
+  ✨ Generated from Field `Certificate`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`auditId` of type `UUID!`
+  """
+  auditId: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`audit` of type `Audit!`
+  """
+  audit: Audit_Order
+  """
+  ✨ Generated from Field `Certificate`.`blockchainTxId` of type `String`
+  """
+  blockchainTxId: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`certificateUrl` of type `String!`
+  """
+  certificateUrl: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate` of type `Timestamp`
+  """
+  expirationDate: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issueDate` of type `Timestamp!`
+  """
+  issueDate: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issuer` of type `String`
+  """
+  issuer: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`auditId_count` of type `Int!`
+  """
+  auditId_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`blockchainTxId_count` of type `Int!`
+  """
+  blockchainTxId_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`certificateUrl_count` of type `Int!`
+  """
+  certificateUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_count` of type `Int!`
+  """
+  expirationDate_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_count` of type `Int!`
+  """
+  issueDate_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issuer_count` of type `Int!`
+  """
+  issuer_count: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_min` of type `Timestamp`
+  """
+  expirationDate_min: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_min` of type `Timestamp`
+  """
+  issueDate_min: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`expirationDate_max` of type `Timestamp`
+  """
+  expirationDate_max: OrderDirection
+  """
+  ✨ Generated from Field `Certificate`.`issueDate_max` of type `Timestamp`
+  """
+  issueDate_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Organization'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Organization_Data {
+  """
+  ✨ Generated from Field `Organization`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Organization`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Organization`.`contactEmail` of type `String!`
+  """
+  contactEmail: String
+  """
+  ✨ `_expr` server value variant of `contactEmail` (✨ Generated from Field `Organization`.`contactEmail` of type `String!`)
+  """
+  contactEmail_expr: String_Expr
+  """
+  ✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Organization`.`description` of type `String`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `Organization`.`description` of type `String`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `Organization`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Organization`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+  """
+  ✨ Generated from Field `Organization`.`website` of type `String`
+  """
+  website: String
+  """
+  ✨ `_expr` server value variant of `website` (✨ Generated from Field `Organization`.`website` of type `String`)
+  """
+  website_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Organization'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Organization_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Organization_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Organization_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Organization_Filter!]
+  """
+  ✨ Generated from Field `Organization`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Organization`.`contactEmail` of type `String!`
+  """
+  contactEmail: String_Filter
+  """
+  ✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Organization`.`description` of type `String`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `Organization`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Organization`.`website` of type `String`
+  """
+  website: String_Filter
+  """
+  ✨ Generated from Field `Organization`.`aIModels_on_organization` of type `[AIModel!]!`
+  """
+  aIModels_on_organization: AIModel_ListFilter
+  """
+  ✨ Generated from Field `Organization`.`users_on_organization` of type `[User!]!`
+  """
+  users_on_organization: User_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Organization'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Organization_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Organization_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Organization_Filter
+}
+"""
+✨ Generated having input type for table 'Organization'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Organization_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Organization_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Organization_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Organization_Having!]
+  """
+  ✨ Generated from Field `Organization`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`contactEmail_count` of type `Int!`
+  """
+  contactEmail_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`website_count` of type `Int!`
+  """
+  website_count: Int_Filter
+  """
+  ✨ Generated from Field `Organization`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Organization`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Organization'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Organization_Key {
+  """
+  ✨ Generated from Field `Organization`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Organization`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Organization'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Organization_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Organization_Filter
+}
+"""
+✨ Generated order input type for table 'Organization'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Organization_Order {
+  """
+  ✨ Generated from Field `Organization`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`contactEmail` of type `String!`
+  """
+  contactEmail: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`description` of type `String`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`website` of type `String`
+  """
+  website: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`contactEmail_count` of type `Int!`
+  """
+  contactEmail_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`website_count` of type `Int!`
+  """
+  website_count: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Organization`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Publication'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Publication_Data {
+  """
+  ✨ Generated from Field `Publication`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Publication`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Publication`.`abstract` of type `String`
+  """
+  abstract: String
+  """
+  ✨ `_expr` server value variant of `abstract` (✨ Generated from Field `Publication`.`abstract` of type `String`)
+  """
+  abstract_expr: String_Expr
+  """
+  ✨ Generated from Field `Publication`.`authors` of type `[String]`
+  """
+  authors: [String!]
+  """
+  ✨ `_update` server value variant of `authors` (✨ Generated from Field `Publication`.`authors` of type `[String]`)
+  """
+  authors_update: [String_ListUpdate!]
+  """
+  ✨ Generated from Field `Publication`.`contentUrl` of type `String!`
+  """
+  contentUrl: String
+  """
+  ✨ `_expr` server value variant of `contentUrl` (✨ Generated from Field `Publication`.`contentUrl` of type `String!`)
+  """
+  contentUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Publication`.`keywords` of type `[String]`
+  """
+  keywords: [String!]
+  """
+  ✨ `_update` server value variant of `keywords` (✨ Generated from Field `Publication`.`keywords` of type `[String]`)
+  """
+  keywords_update: [String_ListUpdate!]
+  """
+  ✨ Generated from Field `Publication`.`publicationType` of type `String!`
+  """
+  publicationType: String
+  """
+  ✨ `_expr` server value variant of `publicationType` (✨ Generated from Field `Publication`.`publicationType` of type `String!`)
+  """
+  publicationType_expr: String_Expr
+  """
+  ✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`
+  """
+  publishDate: Timestamp
+  """
+  ✨ `_expr` server value variant of `publishDate` (✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`)
+  """
+  publishDate_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `publishDate` (✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`)
+  """
+  publishDate_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `publishDate` (✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`)
+  """
+  publishDate_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Publication`.`title` of type `String!`
+  """
+  title: String
+  """
+  ✨ `_expr` server value variant of `title` (✨ Generated from Field `Publication`.`title` of type `String!`)
+  """
+  title_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Publication'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Publication_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Publication_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Publication_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Publication_Filter!]
+  """
+  ✨ Generated from Field `Publication`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Publication`.`abstract` of type `String`
+  """
+  abstract: String_Filter
+  """
+  ✨ Generated from Field `Publication`.`authors` of type `[String]`
+  """
+  authors: String_ListFilter
+  """
+  ✨ Generated from Field `Publication`.`contentUrl` of type `String!`
+  """
+  contentUrl: String_Filter
+  """
+  ✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Publication`.`keywords` of type `[String]`
+  """
+  keywords: String_ListFilter
+  """
+  ✨ Generated from Field `Publication`.`publicationType` of type `String!`
+  """
+  publicationType: String_Filter
+  """
+  ✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`
+  """
+  publishDate: Timestamp_Filter
+  """
+  ✨ Generated from Field `Publication`.`title` of type `String!`
+  """
+  title: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'Publication'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Publication_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Publication_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Publication_Filter
+}
+"""
+✨ Generated having input type for table 'Publication'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Publication_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Publication_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Publication_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Publication_Having!]
+  """
+  ✨ Generated from Field `Publication`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`abstract_count` of type `Int!`
+  """
+  abstract_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`contentUrl_count` of type `Int!`
+  """
+  contentUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`publicationType_count` of type `Int!`
+  """
+  publicationType_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`publishDate_count` of type `Int!`
+  """
+  publishDate_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`title_count` of type `Int!`
+  """
+  title_count: Int_Filter
+  """
+  ✨ Generated from Field `Publication`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Publication`.`publishDate_min` of type `Timestamp`
+  """
+  publishDate_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Publication`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Publication`.`publishDate_max` of type `Timestamp`
+  """
+  publishDate_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Publication'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Publication_Key {
+  """
+  ✨ Generated from Field `Publication`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Publication`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Publication'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Publication_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Publication_Filter
+}
+"""
+✨ Generated order input type for table 'Publication'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Publication_Order {
+  """
+  ✨ Generated from Field `Publication`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`abstract` of type `String`
+  """
+  abstract: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`contentUrl` of type `String!`
+  """
+  contentUrl: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publicationType` of type `String!`
+  """
+  publicationType: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publishDate` of type `Timestamp!`
+  """
+  publishDate: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`title` of type `String!`
+  """
+  title: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`abstract_count` of type `Int!`
+  """
+  abstract_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`contentUrl_count` of type `Int!`
+  """
+  contentUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publicationType_count` of type `Int!`
+  """
+  publicationType_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publishDate_count` of type `Int!`
+  """
+  publishDate_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`title_count` of type `Int!`
+  """
+  title_count: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publishDate_min` of type `Timestamp`
+  """
+  publishDate_min: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+  """
+  ✨ Generated from Field `Publication`.`publishDate_max` of type `Timestamp`
+  """
+  publishDate_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input User_Data {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `User`.`organizationId` of type `UUID`
+  """
+  organizationId: UUID
+  """
+  ✨ `_expr` server value variant of `organizationId` (✨ Generated from Field `User`.`organizationId` of type `UUID`)
+  """
+  organizationId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `User`.`organization` of type `Organization`
+  """
+  organization: Organization_Key
+  """
+  ✨ Generated from Field `User`.`authId` of type `String!`
+  """
+  authId: String
+  """
+  ✨ `_expr` server value variant of `authId` (✨ Generated from Field `User`.`authId` of type `String!`)
+  """
+  authId_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String!`
+  """
+  displayName: String
+  """
+  ✨ `_expr` server value variant of `displayName` (✨ Generated from Field `User`.`displayName` of type `String!`)
+  """
+  displayName_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `User`.`email` of type `String!`)
+  """
+  email_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`lastLogin` of type `Timestamp`
+  """
+  lastLogin: Timestamp
+  """
+  ✨ `_expr` server value variant of `lastLogin` (✨ Generated from Field `User`.`lastLogin` of type `Timestamp`)
+  """
+  lastLogin_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `lastLogin` (✨ Generated from Field `User`.`lastLogin` of type `Timestamp`)
+  """
+  lastLogin_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `lastLogin` (✨ Generated from Field `User`.`lastLogin` of type `Timestamp`)
+  """
+  lastLogin_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `User`.`role` of type `String`
+  """
+  role: String
+  """
+  ✨ `_expr` server value variant of `role` (✨ Generated from Field `User`.`role` of type `String`)
+  """
+  role_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'User'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [User_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: User_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [User_Filter!]
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `User`.`organizationId` of type `UUID`
+  """
+  organizationId: UUID_Filter
+  """
+  ✨ Generated from Field `User`.`organization` of type `Organization`
+  """
+  organization: Organization_Filter
+  """
+  ✨ Generated from Field `User`.`authId` of type `String!`
+  """
+  authId: String_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String!`
+  """
+  displayName: String_Filter
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `User`.`lastLogin` of type `Timestamp`
+  """
+  lastLogin: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`role` of type `String`
+  """
+  role: String_Filter
+}
+"""
+✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input User_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [User_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: User_Filter
+}
+"""
+✨ Generated having input type for table 'User'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [User_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: User_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [User_Having!]
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`authId_count` of type `Int!`
+  """
+  authId_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`lastLogin_count` of type `Int!`
+  """
+  lastLogin_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`organizationId_count` of type `Int!`
+  """
+  organizationId_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`role_count` of type `Int!`
+  """
+  role_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`lastLogin_min` of type `Timestamp`
+  """
+  lastLogin_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`lastLogin_max` of type `Timestamp`
+  """
+  lastLogin_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'User'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input User_Key {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'User'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input User_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: User_Filter
+}
+"""
+✨ Generated order input type for table 'User'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input User_Order {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `User`.`organizationId` of type `UUID`
+  """
+  organizationId: OrderDirection
+  """
+  ✨ Generated from Field `User`.`organization` of type `Organization`
+  """
+  organization: Organization_Order
+  """
+  ✨ Generated from Field `User`.`authId` of type `String!`
+  """
+  authId: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String!`
+  """
+  displayName: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `User`.`lastLogin` of type `Timestamp`
+  """
+  lastLogin: OrderDirection
+  """
+  ✨ Generated from Field `User`.`role` of type `String`
+  """
+  role: OrderDirection
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`authId_count` of type `Int!`
+  """
+  authId_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`lastLogin_count` of type `Int!`
+  """
+  lastLogin_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`organizationId_count` of type `Int!`
+  """
+  organizationId_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`role_count` of type `Int!`
+  """
+  role_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `User`.`lastLogin_min` of type `Timestamp`
+  """
+  lastLogin_min: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+  """
+  ✨ Generated from Field `User`.`lastLogin_max` of type `Timestamp`
+  """
+  lastLogin_max: OrderDirection
+}

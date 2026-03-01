@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "malbolge-core"
+version = "0.1.0"
+description = "Neuromorphic Core Engine for AHI Operation Center"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "AHI Governance Labs", email = "core@ahigovernance.com" }
+]
+dependencies = [
+    "numpy>=1.21.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/malbolge_core"]

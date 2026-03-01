@@ -1,0 +1,674 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `AIModel` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  aIModel_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: AIModel_Data!
+  ): AIModel_KeyOutput! @fdc_generated(from: "AIModel", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Audit` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  audit_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Audit_Data!
+  ): Audit_KeyOutput! @fdc_generated(from: "Audit", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Certificate` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  certificate_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Certificate_Data!
+  ): Certificate_KeyOutput! @fdc_generated(from: "Certificate", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Organization` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  organization_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Organization_Data!
+  ): Organization_KeyOutput! @fdc_generated(from: "Organization", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Publication` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  publication_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Publication_Data!
+  ): Publication_KeyOutput! @fdc_generated(from: "Publication", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `AIModel` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  aIModel_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [AIModel_Data!]!
+  ): [AIModel_KeyOutput!]! @fdc_generated(from: "AIModel", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Audit` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  audit_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Audit_Data!]!
+  ): [Audit_KeyOutput!]! @fdc_generated(from: "Audit", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Certificate` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  certificate_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Certificate_Data!]!
+  ): [Certificate_KeyOutput!]! @fdc_generated(from: "Certificate", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Organization` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  organization_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Organization_Data!]!
+  ): [Organization_KeyOutput!]! @fdc_generated(from: "Organization", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Publication` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  publication_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Publication_Data!]!
+  ): [Publication_KeyOutput!]! @fdc_generated(from: "Publication", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `AIModel` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `AIModel`.
+  """
+  aIModel_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: AIModel_Data!
+  ): AIModel_KeyOutput! @fdc_generated(from: "AIModel", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Audit` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Audit`.
+  """
+  audit_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Audit_Data!
+  ): Audit_KeyOutput! @fdc_generated(from: "Audit", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Certificate` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Certificate`.
+  """
+  certificate_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Certificate_Data!
+  ): Certificate_KeyOutput! @fdc_generated(from: "Certificate", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Organization` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Organization`.
+  """
+  organization_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Organization_Data!
+  ): Organization_KeyOutput! @fdc_generated(from: "Organization", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Publication` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Publication`.
+  """
+  publication_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Publication_Data!
+  ): Publication_KeyOutput! @fdc_generated(from: "Publication", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `AIModel` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `AIModel`.
+  """
+  aIModel_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [AIModel_Data!]!
+  ): [AIModel_KeyOutput!]! @fdc_generated(from: "AIModel", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Audit` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Audit`.
+  """
+  audit_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Audit_Data!]!
+  ): [Audit_KeyOutput!]! @fdc_generated(from: "Audit", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Certificate` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Certificate`.
+  """
+  certificate_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Certificate_Data!]!
+  ): [Certificate_KeyOutput!]! @fdc_generated(from: "Certificate", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Organization` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Organization`.
+  """
+  organization_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Organization_Data!]!
+  ): [Organization_KeyOutput!]! @fdc_generated(from: "Organization", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Publication` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Publication`.
+  """
+  publication_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Publication_Data!]!
+  ): [Publication_KeyOutput!]! @fdc_generated(from: "Publication", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `AIModel` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `AIModel` or `null` if not found.
+  """
+  aIModel_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: AIModel_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: AIModel_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: AIModel_Data!
+  ): AIModel_KeyOutput @fdc_generated(from: "AIModel", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Audit` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Audit` or `null` if not found.
+  """
+  audit_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Audit_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Audit_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Audit_Data!
+  ): Audit_KeyOutput @fdc_generated(from: "Audit", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Certificate` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Certificate` or `null` if not found.
+  """
+  certificate_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Certificate_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Certificate_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Certificate_Data!
+  ): Certificate_KeyOutput @fdc_generated(from: "Certificate", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Organization` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Organization` or `null` if not found.
+  """
+  organization_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Organization_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Organization_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Organization_Data!
+  ): Organization_KeyOutput @fdc_generated(from: "Organization", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Publication` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Publication` or `null` if not found.
+  """
+  publication_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Publication_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Publication_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Publication_Data!
+  ): Publication_KeyOutput @fdc_generated(from: "Publication", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `AIModel` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  aIModel_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: AIModel_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: AIModel_Data!
+  ): Int! @fdc_generated(from: "AIModel", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Audit` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  audit_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Audit_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Audit_Data!
+  ): Int! @fdc_generated(from: "Audit", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Certificate` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  certificate_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Certificate_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Certificate_Data!
+  ): Int! @fdc_generated(from: "Certificate", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Organization` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  organization_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Organization_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Organization_Data!
+  ): Int! @fdc_generated(from: "Organization", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Publication` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  publication_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Publication_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Publication_Data!
+  ): Int! @fdc_generated(from: "Publication", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `AIModel` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  aIModel_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: AIModel_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: AIModel_FirstRow
+  ): AIModel_KeyOutput @fdc_generated(from: "AIModel", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Audit` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  audit_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Audit_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Audit_FirstRow
+  ): Audit_KeyOutput @fdc_generated(from: "Audit", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Certificate` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  certificate_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Certificate_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Certificate_FirstRow
+  ): Certificate_KeyOutput @fdc_generated(from: "Certificate", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Organization` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  organization_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Organization_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Organization_FirstRow
+  ): Organization_KeyOutput @fdc_generated(from: "Organization", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Publication` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  publication_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Publication_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Publication_FirstRow
+  ): Publication_KeyOutput @fdc_generated(from: "Publication", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `AIModel` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  aIModel_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: AIModel_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "AIModel", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Audit` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  audit_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Audit_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Audit", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Certificate` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  certificate_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Certificate_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Certificate", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Organization` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  organization_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Organization_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Organization", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Publication` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  publication_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Publication_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Publication", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+}

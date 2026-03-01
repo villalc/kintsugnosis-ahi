@@ -1,0 +1,28 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "source": "packages/alpha-core",
+      "runtime": "nodejs22",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
+  "hosting": {
+    "source": "ahi-unified-platform",
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  },
+  "dataconnect": {
+    "source": "dataconnect"
+  }
+}
