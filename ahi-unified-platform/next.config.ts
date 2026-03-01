@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone", // Optimización para Docker/Cloud Run
   async headers() {
     return [
       {

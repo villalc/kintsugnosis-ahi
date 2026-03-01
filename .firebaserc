@@ -1,5 +1,19 @@
 {
   "projects": {
     "default": "kintsugnosis-ahi"
-  }
+  },
+  "targets": {
+    "kintsugnosis-ahi": {
+      "hosting": {
+        "ahigovernance": [
+          "ahigovernance"
+        ],
+        "sovereignsymbiosis": [
+          "sovereignsymbiosis"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

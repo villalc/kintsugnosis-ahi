@@ -2,18 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-// Tell TypeScript that <stripe-buy-button> is a valid HTML element
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'stripe-buy-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        'buy-button-id': string;
-        'publishable-key': string;
-      }, HTMLElement>;
-    }
-  }
-}
-
 interface StripeBuyButtonProps {
   buyButtonId: string;
   publishableKey: string;
@@ -38,6 +26,7 @@ export function StripeBuyButton({ buyButtonId, publishableKey }: StripeBuyButton
   }, []);
 
   return (
+    // @ts-ignore - Stripe Web Component definition
     <stripe-buy-button
       buy-button-id={buyButtonId}
       publishable-key={publishableKey}
