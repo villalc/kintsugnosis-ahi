@@ -1,18 +1,9 @@
 {
-  "version": 2,
-  "builds": [
+  "framework": "nextjs",
+  "rewrites": [
     {
-      "src": "ahi-unified-platform/package.json",
-      "use": "@vercel/next",
-      "config": {
-        "workPath": "ahi-unified-platform"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "ahi-unified-platform/"
+      "source": "/api/:path*",
+      "destination": "https://us-central1-cs-poc-aguy0wkzgf55jarewtxljk9.cloudfunctions.net/api_gateway/:path*"
     }
   ]
 }
