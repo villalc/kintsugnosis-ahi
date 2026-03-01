@@ -1,107 +1,132 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Orbitron, JetBrains_Mono } from "next/font/google";
 import { AuthProvider } from "@/lib/auth/AuthContext";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // --- FONT DEFINITIONS ---
-// Combining fonts from both versions
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: 'swap',
+});
 
-// --- METADATA (from remote) ---
+const orbitron = Orbitron({ 
+  subsets: ["latin"], 
+  variable: "--font-orbitron",
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  subsets: ["latin"], 
+  variable: "--font-jetbrains-mono",
+  display: 'swap',
+});
+
+// --- METADATA ---
 export const metadata: Metadata = {
-  title: {
-    default: "AHI Governance Labs — Auditoría Ética de IA",
-    template: "%s | AHI Governance Labs",
-  },
-  description:
-    "Auditoría y certificación ética de sistemas de inteligencia artificial. CRI™ Score, MEBA Framework y Protocolo GIP para gobernanza responsable de IA.",
-  metadataBase: new URL("https://ahigovernance.com"),
-  // ... (keeping all the SEO and openGraph metadata from the remote version)
-  openGraph: {
-    type: "website",
-    locale: "es_MX",
-    url: "https://ahigovernance.com",
-    siteName: "AHI Governance Labs",
-    title: "AHI Governance Labs — Auditoría Ética de IA",
-    description:
-      "Certificación CRI™ y auditoría geométrica para sistemas autónomos. Gobernanza responsable basada en matemáticas.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "AHI Governance Labs — Auditoría Ética de IA",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AHI Governance Labs",
-    description:
-      "Auditoría y certificación ética de sistemas de IA. CRI™ Score y Protocolo GIP.",
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-  themeColor: "#0a0a0a",
+  title: "AHI Governance Labs | Truth as a Service",
+  description: "Infraestructura de gobernanza determinista. Certificación de integridad estructural y auditoría de IA.",
 };
 
-// --- Main Navigation (our new clean version) ---
-function MainNav() {
+// --- GLOBAL UI COMPONENTS ---
+
+function IntegritySeal() {
   return (
-    <nav className="bg-slate-900/50 backdrop-blur-lg border-b border-slate-700 sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="font-bold text-lg font-grotesk">
-            <span className="text-green-400">AHI</span> Unified
-          </div>
-          <div className="flex items-center space-x-6 text-sm">
-            <a href="/" className="text-slate-300 hover:text-white transition-colors">Home</a>
-            <a href="/governance" className="text-slate-300 hover:text-white transition-colors">Governance</a>
-            <a href="/symbiosis" className="text-slate-300 hover:text-white transition-colors">Sovereign Symbiosis</a>
-            <a href="/dashboard" className="text-slate-300 hover:text-white transition-colors">Dashboard</a>
-          </div>
+    <div className="fixed bottom-8 right-8 z-[1000] bg-[rgba(3,3,5,0.9)] border border-[var(--accent)] p-4 rounded-sm flex items-center gap-4 backdrop-blur-md shadow-2xl">
+      <div className="w-6 h-6 relative animate-rotate-seal">
+        <div className="absolute inset-0 border border-[var(--accent)] rotate-45" />
+        <div className="absolute inset-0 border border-[var(--accent)] rotate-[22.5deg]" />
+      </div>
+      <div className="flex flex-col">
+        <span className="font-mono text-[9px] text-slate-500 uppercase leading-none mb-1">Region: Global_Consensus</span>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full animate-pulse-dot shadow-[0_0_10px_var(--accent)]" />
+          <span className="font-display text-[0.75rem] text-white tracking-widest font-bold">0.842 SIGNED</span>
         </div>
       </div>
-    </nav>
+    </div>
   );
 }
 
-// --- Root Layout ---
+function MainNav() {
+  return (
+    <header className="fixed top-0 left-0 w-full z-[100] backdrop-blur-lg border-b border-white/5 bg-[rgba(3,3,5,0.85)]">
+      <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
+        <a href="/" className="flex items-center gap-3">
+          <div className="w-3 h-3 bg-[var(--accent)] shadow-[0_0_10px_var(--accent-glow)] rotate-45" />
+          <span className="font-display font-black text-white text-[1rem] tracking-[0.2em]">AHI GOVERNANCE</span>
+        </a>
+        
+        <nav className="flex items-center gap-12">
+           <div className="flex gap-8 items-center">
+              <a href="#solutions" className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Soluciones</a>
+              <a href="#portal" className="font-mono text-[0.65rem] text-slate-500 hover:text-[var(--accent)] uppercase tracking-widest transition-colors">Auditoría</a>
+           </div>
+           
+           <div className="flex items-center bg-white/5 border border-white/5 p-0.5 rounded-sm">
+              <a href="/" className="px-3 py-1.5 bg-[var(--accent-dim)] text-[var(--accent)] border border-[var(--accent)] font-mono text-[0.6rem] uppercase tracking-wider">Operational</a>
+              <a href="/symbiosis" className="px-3 py-1.5 text-slate-500 hover:text-slate-300 font-mono text-[0.6rem] uppercase tracking-wider">Research</a>
+           </div>
+
+           <a href="mailto:enterprise@ahigovernance.com" className="btn-primary">
+              Acceso Enterprise
+           </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+// --- ROOT LAYOUT ---
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-slate-900 text-slate-200`}>
+    <html lang="es" className="dark">
+      <body className={`${inter.variable} ${orbitron.variable} ${jetbrainsMono.variable} antialiased selection:bg-[var(--accent)] selection:text-black`}>
         <AuthProvider>
           <MainNav />
-          <main className="max-w-5xl mx-auto px-4 py-12">
+          <main id="main-content">
             {children}
           </main>
-          <footer className="max-w-5xl mx-auto px-4 py-8 mt-16 border-t border-slate-700 text-center text-slate-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} AHI Corporation. All rights reserved.</p>
+          <IntegritySeal />
+          
+          <footer className="py-24 border-t border-white/5 bg-black/50">
+             <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                   <span className="font-display font-bold text-white text-sm tracking-widest mb-6 block uppercase">AHI Governance</span>
+                   <p className="text-slate-500 text-xs leading-relaxed">Infraestructura de verdad para la era de la inteligencia artificial.</p>
+                </div>
+                <div>
+                   <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Ecosistema</h5>
+                   <div className="flex flex-col gap-3">
+                      <a href="/symbiosis" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Fundación</a>
+                      <a href="/eu-ai-act" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Compliance EU</a>
+                   </div>
+                </div>
+                <div>
+                   <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Servicios</h5>
+                   <div className="flex flex-col gap-3">
+                      <a href="/pricing" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Planes</a>
+                      <a href="#portal" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Auditoría</a>
+                   </div>
+                </div>
+                <div>
+                   <h5 className="font-mono text-[0.65rem] text-[var(--accent)] uppercase mb-6 tracking-widest">Legal</h5>
+                   <div className="flex flex-col gap-3">
+                      <a href="/privacy" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Privacidad</a>
+                      <a href="/terms" className="text-slate-500 text-[0.7rem] hover:text-[var(--accent)] transition-colors uppercase font-mono tracking-wider">Términos</a>
+                   </div>
+                </div>
+             </div>
+             <div className="max-w-7xl mx-auto px-8 pt-12 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-700 uppercase tracking-[0.2em]">
+                <div>© 2026 AHI Governance Labs</div>
+                <div>IMPI 20250494546 | ISO_PENDING</div>
+             </div>
           </footer>
         </AuthProvider>
-        <Analytics />
       </body>
     </html>
   );

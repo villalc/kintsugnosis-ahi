@@ -1,21 +1,21 @@
 {
   "name": "alpha-core",
-  "version": "3.2.0",
-  "description": "AHI Governance Alpha Engine - Powered by Genkit 1.x",
+  "version": "4.0.0",
+  "description": "AHI Governance Alpha Engine - Kintsugnosis Edition - Powered by Genkit & Vertex AI",
   "author": "AHI 3.0 & Sovereign Symbiosis Foundation",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "npm run test:ci",
-    "test:ci": "npx firebase experiments:enable webframeworks && cross-env FIREBASE_CONFIG='{\"projectId\":\"cs-poc-aguy0wkzgf55jarewtxljk9\"}' firebase emulators:exec --only functions,firestore --project cs-poc-aguy0wkzgf55jarewtxljk9 \"node scripts/verify_contract.js\"",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "deploy": "firebase deploy --only functions",
+    "test:ci": "npx firebase experiments:enable webframeworks && cross-env FIREBASE_CONFIG='{\"projectId\":\"kintsugnosis-ahi\"}' firebase emulators:exec --only functions,firestore --project kintsugnosis-ahi \"node scripts/verify_contract.js\"",
+    "serve": "npm run build && firebase emulators:start --only functions --project kintsugnosis-ahi",
+    "deploy": "firebase deploy --only functions --project kintsugnosis-ahi",
     "lint": "eslint src/**/*.ts",
     "genkit:start": "genkit start"
   },
   "engines": {
-    "node": ">=22"
+    "node": "22"
   },
   "dependencies": {
     "genkit": "^1.29.0",
@@ -23,17 +23,19 @@
     "@genkit-ai/core": "^1.29.0",
     "@genkit-ai/firebase": "^1.29.0",
     "@genkit-ai/googleai": "^1.28.0",
-    "@google-cloud/pubsub": "^4.0.7",
-    "firebase-admin": "^13.0.0",
-    "firebase-functions": "^6.0.0",
-    "openai": "^4.28.0",
-    "zod": "^3.24.1"
+    "@genkit-ai/vertexai": "^1.29.0",
+    "@google-cloud/pubsub": "^4.10.0",
+    "firebase-admin": "^13.1.0",
+    "firebase-functions": "^6.3.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "firebase-tools": "^15.5.1",
+    "@types/node": "^22.0.0",
+    "firebase-tools": "^13.31.1",
     "genkit-cli": "^1.6.1",
-    "typescript": "^5.3.0"
+    "typescript": "^5.7.3",
+    "eslint": "^9.21.0",
+    "cross-env": "^7.0.3"
   },
   "private": true
 }
