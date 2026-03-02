@@ -6,12 +6,12 @@ import { GlassPanel } from '@/components/ui/GlassPanel';
 import { ShieldCheck, Cpu } from 'lucide-react';
 
 export default function LoginPage() {
-  const { loginWithGoogle, loading } = useAuth();
+  const { signInWithGoogle, loading } = useAuth();
   const [error, setError] = useState('');
 
   const handleLogin = async () => {
     try {
-      await loginWithGoogle();
+      await signInWithGoogle();
     } catch (err) {
       setError('Authentication failed. Access Denied.');
     }
