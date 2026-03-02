@@ -1,13 +1,17 @@
 serviceId: ahi-unified-platform
 runConfig:
-  cpu: 1
-  memoryMiB: 2048
+  cpu: 2
+  memoryMiB: 4096
   minInstances: 0
   maxInstances: 10
   concurrency: 80
 env:
   - variable: GOOGLE_GENAI_API_KEY
     secret: GENAI_API_KEY
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: AIzaSyDummyKeyForBuildTimeOnly12345
+    availability:
+      - BUILD
   - variable: NEXT_PUBLIC_STRIPE_PK
     value: pk_live_51T5abG3fWVYxfUSDz66GX6GJvJERTjMOuM44eET8YWuMKoSjF9rmpVTm51DjlPzkw7YGXLhP2slmQcXi0nRfNkPv00CjHsUy0p
   - variable: NEXT_PUBLIC_STRIPE_BTN_QUICK
