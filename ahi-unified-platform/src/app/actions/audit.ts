@@ -38,7 +38,8 @@ export async function auditContent(input: string): Promise<AuditResult> {
   }
 
   // DISTORTION triggers (from Babel Glossary)
-  const distortionDetected = BABEL_GLOSSARY.some(term => lowerInput.includes(term.toLowerCase()));
+  const babelKeys = Object.keys(BABEL_GLOSSARY);
+  const distortionDetected = babelKeys.some(term => lowerInput.includes(term.toLowerCase()));
   if (distortionDetected) {
     return {
       action: 'DISTORTION',
