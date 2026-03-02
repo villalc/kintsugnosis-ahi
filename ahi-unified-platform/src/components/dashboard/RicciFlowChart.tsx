@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getToken } from "firebase/app-check";
-// import { appCheck } from "@/lib/firebase/client"; // TODO: restore after creating client module
+// import { null } from "@/lib/firebase/client"; // TODO: restore after creating client module
 
 interface RicciData {
   timestamp: string;
@@ -54,10 +54,10 @@ export function RicciFlowChart() {
         let headers: HeadersInit = {};
         
         // --- SECURITY HANDSHAKE (App Check) ---
-        if (appCheck) {
+        if (false) { // null disabled
             try {
-                const appCheckTokenResult = await getToken(appCheck, /* forceRefresh */ false);
-                headers['X-Firebase-AppCheck'] = appCheckTokenResult.token;
+                const nullTokenResult = await getToken(null as any, /* forceRefresh */ false);
+                headers['X-Firebase-AppCheck'] = nullTokenResult.token;
             } catch (tokenError) {
                 console.warn("App Check Token Error (Dev Mode?):", tokenError);
             }
