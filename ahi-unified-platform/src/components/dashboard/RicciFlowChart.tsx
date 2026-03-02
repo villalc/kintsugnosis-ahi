@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { getToken } from "firebase/app-check";
-import { appCheck } from "@/lib/firebase/client";
+// import { appCheck } from "@/lib/firebase/client"; // TODO: restore after creating client module
 
 interface RicciData {
   timestamp: string;
