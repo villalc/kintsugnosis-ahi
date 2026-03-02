@@ -64,7 +64,7 @@ export default function DashboardPage() {
               className="p-2 hover:bg-red-500/10 rounded-lg transition-colors group"
               title="Terminate Session"
             >
-              <signOut className="w-5 h-5 text-gray-500 group-hover:text-red-400" />
+              <LogOut className="w-5 h-5 text-gray-500 group-hover:text-red-400" />
             </button>
           </div>
         </div>
