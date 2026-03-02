@@ -12,7 +12,9 @@ COPY . .
 
 # Environment variables needed for build time
 ARG NEXT_PUBLIC_STRIPE_PK
-ARG NEXT_PUBLIC_FIREBASE_API_KEY
+ARG NEXT_PUBLIC_FIREBASE_API_KEY="AIzaSyAfwvL413oxRc7WdMNw25nEHOuVUrBLs7U" 
+# ^ Hardcodeamos el default correcto para el build, pero permitimos override con ARG
+
 ENV NEXT_PUBLIC_STRIPE_PK=$NEXT_PUBLIC_STRIPE_PK
 ENV NEXT_PUBLIC_FIREBASE_API_KEY=$NEXT_PUBLIC_FIREBASE_API_KEY
 
