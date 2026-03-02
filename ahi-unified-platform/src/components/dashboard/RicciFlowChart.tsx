@@ -51,7 +51,7 @@ export function RicciFlowChart() {
       const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
 
       try {
-        let headers: HeadersInit = {};
+        let headers: Record<string, string> = {};
         
         // --- SECURITY HANDSHAKE (App Check) ---
         if (false) { // null disabled
