@@ -7,7 +7,7 @@ runConfig:
   concurrency: 80
 env:
   - variable: GOOGLE_GENAI_API_KEY
-    secret: GOOGLE_GENAI_API_KEY
+    secret: GENAI_API_KEY
   - variable: NEXT_PUBLIC_STRIPE_PK
     value: pk_live_51T5abG3fWVYxfUSDz66GX6GJvJERTjMOuM44eET8YWuMKoSjF9rmpVTm51DjlPzkw7YGXLhP2slmQcXi0nRfNkPv00CjHsUy0p
   - variable: NEXT_PUBLIC_STRIPE_BTN_QUICK
