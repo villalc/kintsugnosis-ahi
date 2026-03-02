@@ -7,6 +7,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link'; // Importar Link
 import { cn } from '@/lib/utils';
 
 export interface NavItem {
@@ -110,6 +111,52 @@ export const Navigation: React.FC<NavigationProps> = ({
     accent.hover
   );
 
+  const renderNavItem = (item: NavItem, isMobile: boolean = false) => {
+    const commonProps = {
+      key: item.href,
+      className: isMobile ? cn(
+                  "block px-4 py-3 text-sm font-medium rounded-lg transition-all duration-400",
+                  item.active ? accent.active : "text-main/70",
+                  styles.hover,
+                  accent.hover,
+                  "hover:bg-main/5"
+                ) : navItemClasses(item),
+      onClick: isMobile ? () => setIsMenuOpen(false) : undefined,
+    };
+
+    if (item.external) {
+      return (
+        <a href={item.href} target="_blank" rel="noopener noreferrer" {...commonProps}>
+          {item.label}
+          {isMobile && <span className="ml-2 text-xs opacity-50">↗</span>}
+        </a>
+      );
+    } else {
+      return (
+        <Link href={item.href} {...commonProps}>
+          <span className="relative z-10">{item.label}</span>
+          {!isMobile && <>
+            {/* Hover indicator */}
+            <span className={cn(
+              "absolute bottom-0 left-0 w-full h-0.5 transform origin-left",
+              "scale-x-0 group-hover:scale-x-100 transition-transform duration-400",
+              item.active ? accent.indicator : "bg-current",
+              "opacity-50"
+            )} />
+            
+            {/* Active indicator */}
+            {item.active && (
+              <span className={cn(
+                "absolute bottom-0 left-0 w-full h-0.5",
+                accent.indicator
+              )} />
+            )}
+          </>}
+        </Link>
+      );
+    }
+  };
+
   return (
     <nav className={cn(
       position,
@@ -121,7 +168,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           {showLogo && (
-            <a href="#" className={cn(
+            <Link href="/" className={cn(
               "flex items-center space-x-3 group",
               styles.hover
             )}>
@@ -140,38 +187,12 @@ export const Navigation: React.FC<NavigationProps> = ({
               )}>
                 {logoText}
               </span>
-            </a>
+            </Link>
           )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
-            {items.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                className={navItemClasses(item)}
-              >
-                <span className="relative z-10">{item.label}</span>
-                
-                {/* Hover indicator */}
-                <span className={cn(
-                  "absolute bottom-0 left-0 w-full h-0.5 transform origin-left",
-                  "scale-x-0 group-hover:scale-x-100 transition-transform duration-400",
-                  item.active ? accent.indicator : "bg-current",
-                  "opacity-50"
-                )} />
-                
-                {/* Active indicator */}
-                {item.active && (
-                  <span className={cn(
-                    "absolute bottom-0 left-0 w-full h-0.5",
-                    accent.indicator
-                  )} />
-                )}
-              </a>
-            ))}
+            {items.map(item => renderNavItem(item))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -213,27 +234,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             "border-t",
             styles.border
           )}>
-            {items.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                className={cn(
-                  "block px-4 py-3 text-sm font-medium rounded-lg transition-all duration-400",
-                  item.active ? accent.active : "text-main/70",
-                  styles.hover,
-                  accent.hover,
-                  "hover:bg-main/5"
-                )}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-                {item.external && (
-                  <span className="ml-2 text-xs opacity-50">↗</span>
-                )}
-              </a>
-            ))}
+            {items.map(item => renderNavItem(item, true))}
           </div>
         </div>
       </div>
