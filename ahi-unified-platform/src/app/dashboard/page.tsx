@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation';
 import { GlassPanel } from '@/components/ui/GlassPanel';
 import { RicciFlowChart } from '@/components/dashboard/RicciFlowChart';
 import { EntropyChart } from '@/components/dashboard/EntropyChart';
-import { Activity, Shield, LogOut, Terminal, Zap } from 'lucide-react';
+import { Activity, Shield, signOut, Terminal, Zap } from 'lucide-react';
 
 export default function DashboardPage() {
-  const { user, loading, logout } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -60,11 +60,11 @@ export default function DashboardPage() {
               className="w-10 h-10 rounded-full border-2 border-cyan-500/30"
             />
             <button 
-              onClick={logout}
+              onClick={signOut}
               className="p-2 hover:bg-red-500/10 rounded-lg transition-colors group"
               title="Terminate Session"
             >
-              <LogOut className="w-5 h-5 text-gray-500 group-hover:text-red-400" />
+              <signOut className="w-5 h-5 text-gray-500 group-hover:text-red-400" />
             </button>
           </div>
         </div>
