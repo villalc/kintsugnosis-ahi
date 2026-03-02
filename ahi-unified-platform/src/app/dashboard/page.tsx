@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { GlassPanel } from '@/components/ui/GlassPanel';
 import { RicciFlowChart } from '@/components/dashboard/RicciFlowChart';
 import { EntropyChart } from '@/components/dashboard/EntropyChart';
-import { Activity, Shield, signOut, Terminal, Zap } from 'lucide-react';
+import { Activity, Shield, LogOut, Terminal, Zap } from 'lucide-react';
 
 export default function DashboardPage() {
   const { user, loading, signOut } = useAuth();
