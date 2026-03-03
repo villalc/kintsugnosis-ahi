@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── COLECCION USERS ──────────────────────────────────────────────────
+    // El usuario puede LEER su propio documento
+    // NADIE puede escribir directamente (solo el backend via Admin SDK)
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false; // Solo el webhook de Stripe escribe aqui via Admin SDK
+    }
+
+    // ─── COLECCION SS_USAGE (Rate limiting de Sovereign Symbiosis) ─────────
+    // Solo lectura del propio usuario, escritura via backend
+    match /ss_usage/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // ─── REGLA POR DEFECTO: denegar todo lo demas ─────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
