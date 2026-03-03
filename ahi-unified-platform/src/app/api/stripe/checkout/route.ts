@@ -5,11 +5,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-01-27.acacia',
 });
 
-// Mapa de tiers a Price IDs de Stripe
+// ─── IMPORTANTE: Reemplaza estos valores con los Price IDs reales de tu Stripe Dashboard
+// Ve a: stripe.com/dashboard → Products → clic en el producto → copia el "Price ID" (price_xxx)
+// Los Price IDs son DIFERENTES a los Buy Button IDs (buy_btn_xxx)
 const TIER_PRICE_MAP: Record<string, { priceId: string; tier: number; name: string }> = {
-  quick:     { priceId: 'price_1T5cmg3fWVYxfUSDuH0roD9A_recurrent', tier: 1, name: 'Auditoría Rápida' },
-  technical: { priceId: 'price_1T5clo3fWVYxfUSDmxJcs9K3_recurrent', tier: 2, name: 'Auditoría Técnica' },
-  enterprise:{ priceId: 'price_1T5chZ3fWVYxfUSDy7SjAWk9_recurrent', tier: 3, name: 'Enterprise' },
+  quick:      { priceId: process.env.STRIPE_PRICE_TIER1 || 'REEMPLAZAR_CON_PRICE_ID_TIER1', tier: 1, name: 'Auditoría Rápida' },
+  technical:  { priceId: process.env.STRIPE_PRICE_TIER2 || 'REEMPLAZAR_CON_PRICE_ID_TIER2', tier: 2, name: 'Auditoría Técnica' },
+  enterprise: { priceId: process.env.STRIPE_PRICE_TIER3 || 'REEMPLAZAR_CON_PRICE_ID_TIER3', tier: 3, name: 'Enterprise' },
 };
 
 export async function POST(request: NextRequest) {
@@ -22,6 +24,14 @@ export async function POST(request: NextRequest) {
     }
 
     const { priceId, tier, name } = TIER_PRICE_MAP[tierKey];
+
+    if (priceId.startsWith('REEMPLAZAR')) {
+      return NextResponse.json(
+        { error: 'Price IDs de Stripe no configurados. Agrega STRIPE_PRICE_TIER1/2/3 como variables de entorno.' },
+        { status: 500 }
+      );
+    }
+
     const origin = request.headers.get('origin') || 'https://ahigovernance.com';
 
     const session = await stripe.checkout.sessions.create({
