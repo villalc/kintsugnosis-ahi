@@ -119,7 +119,6 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ received: true });
 }
 
-// Importante: deshabilitar body parser para que Stripe pueda verificar la firma
-export const config = {
-  api: { bodyParser: false },
-};
+// Necesario para leer el raw body del webhook de Stripe
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
